@@ -39,7 +39,6 @@ void TutorialApp::Start()
 {
     CreateScene();
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(TutorialApp, HandleUpdate));
-    SubscribeToEvent(E_KEYDOWN, URHO3D_HANDLER(TutorialApp, HandleKeyDown));
 }
 
 void TutorialApp::Stop() {}
@@ -48,33 +47,16 @@ void TutorialApp::HandleUpdate(StringHash eventType, VariantMap& eventData)
 {
     using namespace Update;
 
-    float timeStep = eventData[P_TIMESTEP].GetFloat();
-    MoveCamera(timeStep);
+    timestep_ = eventData[P_TIMESTEP].GetFloat();
+    MoveCamera(eventData);
 }
 
-void TutorialApp::HandleKeyDown(StringHash eventType, VariantMap& eventData)
+void TutorialApp::MoveCamera(VariantMap& eventData)
 {
-    using namespace KeyDown;
-
-    int key = eventData[P_KEY].GetInt();
-
-    if (key == KEY_ESCAPE)
-    {
-        engine_->Exit();
-    }
-}
-
-void TutorialApp::MoveCamera(float timestep)
-{
-    if (GetSubsystem<UI>()->GetFocusElement())
-    {
-        return;
-    }
+    const float MOUSE_SENS = 0.1f;
+    const float MOVE_SPEED = 20.0f;
 
     auto* input = GetSubsystem<Input>();
-
-    const float MOVE_SPEED = 20.0f;
-    const float MOUSE_SENS = 0.1f;
 
     IntVector2 mouseMove = input->GetMouseMove();
     yaw_ += MOUSE_SENS * mouseMove.x_;
@@ -82,6 +64,26 @@ void TutorialApp::MoveCamera(float timestep)
     pitch_ = Clamp(pitch_, -90.0f, 90.0f);
 
     cameraNode_->SetRotation(Quaternion(pitch_, yaw_, 0.0f));
+
+    if (input->GetKeyDown(KEY_ESCAPE))
+        engine_->Exit();
+
+    Vector3 vec;
+    if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
+        vec += Vector3::FORWARD;
+    else if (input->GetKeyDown(KEY_S) || input->GetKeyDown(KEY_DOWN) || input->GetKeyDown(KEY_K))
+        vec += -Vector3::FORWARD;
+    if (input->GetKeyDown(KEY_A) || input->GetKeyDown(KEY_LEFT) || input->GetKeyDown(KEY_J))
+        vec += -Vector3::RIGHT;
+    else if (input->GetKeyDown(KEY_D) || input->GetKeyDown(KEY_RIGHT) || input->GetKeyDown(KEY_L))
+        vec += Vector3::RIGHT;
+
+    vec.Normalize();
+
+    cameraNode_->Translate((vec / 20.0f) * MOVE_SPEED * timestep_);
+    auto pos = cameraNode_->GetPosition();
+    pos.y_ = 0;
+    cameraNode_->SetPosition(pos);
 }
 
 URHO3D_DEFINE_APPLICATION_MAIN(TutorialApp)

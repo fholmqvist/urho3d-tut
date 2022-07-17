@@ -28,6 +28,7 @@ class TutorialApp : public Application
     SharedPtr<Scene> scene_;
     Node* cameraNode_;
 
+    float timestep_;
     float yaw_;
     float pitch_;
 
@@ -39,9 +40,8 @@ public:
     virtual void Stop();
 
     void HandleUpdate(StringHash eventType, VariantMap& eventData);
-    void HandleKeyDown(StringHash eventType, VariantMap& eventData);
 
 private:
     void CreateScene();
-    void MoveCamera(float timestep);
+    void MoveCamera(VariantMap& eventData);
 };
