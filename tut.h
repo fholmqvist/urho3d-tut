@@ -17,6 +17,7 @@
 #include <Urho3D/Scene/Scene.h>
 #include <Urho3D/UI/UI.h>
 
+#include <iostream>
 #include <memory>
 
 using namespace Urho3D;
@@ -28,6 +29,7 @@ class TutorialApp : public Application
     SharedPtr<Scene> scene_;
     Node* cameraNode_;
 
+    Vector3 vel_;
     float timestep_;
     float yaw_;
     float pitch_;

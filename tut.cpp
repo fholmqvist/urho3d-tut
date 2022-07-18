@@ -27,7 +27,9 @@ void TutorialApp::CreateScene()
 
     cameraNode_ = scene_->CreateChild("Camera");
     Camera* camera = cameraNode_->CreateComponent<Camera>();
-    cameraNode_->GetComponent<Camera>()->SetFarClip(100.0f);
+    auto cam = cameraNode_->GetComponent<Camera>();
+    cam->SetFarClip(100.0f);
+    cam->SetFov(45.0f);
     cameraNode_->Translate(Vector3(0, 0, -2));
 
     SharedPtr<Viewport> viewport(new Viewport(context_, scene_, cameraNode_->GetComponent<Camera>()));
@@ -53,8 +55,8 @@ void TutorialApp::HandleUpdate(StringHash eventType, VariantMap& eventData)
 
 void TutorialApp::MoveCamera(VariantMap& eventData)
 {
-    const float MOUSE_SENS = 0.1f;
-    const float MOVE_SPEED = 20.0f;
+    const float MOUSE_SENS = 5.0f / 100.0f;
+    const float MOVE_SPEED = 25.0f / 100.0f;
 
     auto* input = GetSubsystem<Input>();
 
@@ -68,22 +70,26 @@ void TutorialApp::MoveCamera(VariantMap& eventData)
     if (input->GetKeyDown(KEY_ESCAPE))
         engine_->Exit();
 
-    Vector3 vec;
+    Vector3 move;
     if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
-        vec += Vector3::FORWARD;
+        move += Vector3::FORWARD;
     else if (input->GetKeyDown(KEY_S) || input->GetKeyDown(KEY_DOWN) || input->GetKeyDown(KEY_K))
-        vec += -Vector3::FORWARD;
+        move += -Vector3::FORWARD;
     if (input->GetKeyDown(KEY_A) || input->GetKeyDown(KEY_LEFT) || input->GetKeyDown(KEY_J))
-        vec += -Vector3::RIGHT;
+        move += -Vector3::RIGHT;
     else if (input->GetKeyDown(KEY_D) || input->GetKeyDown(KEY_RIGHT) || input->GetKeyDown(KEY_L))
-        vec += Vector3::RIGHT;
+        move += Vector3::RIGHT;
 
-    vec.Normalize();
+    move.Normalize();
+    vel_ += move * MOVE_SPEED * timestep_;
 
-    cameraNode_->Translate((vec / 20.0f) * MOVE_SPEED * timestep_);
+    auto oldY = cameraNode_->GetPosition().y_;
+    cameraNode_->Translate(vel_);
     auto pos = cameraNode_->GetPosition();
-    pos.y_ = 0;
+    pos.y_ = oldY;
     cameraNode_->SetPosition(pos);
+
+    vel_ *= 0.95f;
 }
 
 URHO3D_DEFINE_APPLICATION_MAIN(TutorialApp)
