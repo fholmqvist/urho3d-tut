@@ -20,6 +20,8 @@
 #include <iostream>
 #include <memory>
 
+#include "player.h"
+
 using namespace Urho3D;
 
 class TutorialApp : public Application
@@ -27,12 +29,9 @@ class TutorialApp : public Application
 
     URHO3D_OBJECT(TutorialApp, Application)
     SharedPtr<Scene> scene_;
-    Node* cameraNode_;
+    Player player_;
 
-    Vector3 vel_;
     float timestep_;
-    float yaw_;
-    float pitch_;
 
 public:
     TutorialApp(Context* context);

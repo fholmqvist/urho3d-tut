@@ -1,0 +1,3 @@
+Player() {}
+
+void Player::Setup() {}
