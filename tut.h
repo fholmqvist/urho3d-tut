@@ -28,7 +28,7 @@ class TutorialApp : public Application
     URHO3D_OBJECT(TutorialApp, Application)
     Input* input_;
     SharedPtr<Scene> scene_;
-    SharedPtr<Player> player_;
+    Player* player_;
 
     float timestep_;
 

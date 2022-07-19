@@ -34,7 +34,7 @@ void TutorialApp::Start()
     cam->SetFov(45.0f);
     camNode->Translate(Vector3(0, 0, -2));
 
-    player_ = new Player(context_);
+    player_ = new Player(input_, camNode);
 
     SharedPtr<Viewport> viewport(new Viewport(context_, scene_, camNode->GetComponent<Camera>()));
     Renderer* renderer = GetSubsystem<Renderer>();

@@ -1,11 +1,10 @@
 #include "player.h"
 
-Player::Player(Context* context)
-    : Object(context)
+Player::Player(Input* input, Node* camNode)
 {
+    input_ = input;
+    camNode_ = camNode;
 }
-
-void Player::RegisterObject(Context* context) { context->RegisterFactory<Player>(); }
 
 void Player::Move(float timestep)
 {
@@ -17,7 +16,7 @@ void Player::Move(float timestep)
     pitch_ += MOUSE_SENS * mouseMove.y_;
     pitch_ = Clamp(pitch_, -90.0f, 90.0f);
 
-    cameraNode_->SetRotation(Quaternion(pitch_, yaw_, 0.0f));
+    camNode_->SetRotation(Quaternion(pitch_, yaw_, 0.0f));
 
     Vector3 move;
     if (input_->GetKeyDown(KEY_W) || input_->GetKeyDown(KEY_UP) || input_->GetKeyDown(KEY_I))
@@ -32,11 +31,11 @@ void Player::Move(float timestep)
     move.Normalize();
     vel_ += move * MOVE_SPEED * timestep;
 
-    auto oldY = cameraNode_->GetPosition().y_;
-    cameraNode_->Translate(vel_);
-    auto pos = cameraNode_->GetPosition();
+    auto oldY = camNode_->GetPosition().y_;
+    camNode_->Translate(vel_);
+    auto pos = camNode_->GetPosition();
     pos.y_ = oldY;
-    cameraNode_->SetPosition(pos);
+    camNode_->SetPosition(pos);
 
     vel_ *= 0.95f;
 }
