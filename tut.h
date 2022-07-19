@@ -11,7 +11,6 @@
 #include <Urho3D/Graphics/Renderer.h>
 #include <Urho3D/Graphics/StaticModel.h>
 #include <Urho3D/Graphics/Viewport.h>
-#include <Urho3D/Input/Input.h>
 #include <Urho3D/Input/InputEvents.h>
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Scene/Scene.h>
@@ -26,10 +25,10 @@ using namespace Urho3D;
 
 class TutorialApp : public Application
 {
-
     URHO3D_OBJECT(TutorialApp, Application)
+    Input* input_;
     SharedPtr<Scene> scene_;
-    Player player_;
+    SharedPtr<Player> player_;
 
     float timestep_;
 
@@ -41,8 +40,4 @@ public:
     virtual void Stop();
 
     void HandleUpdate(StringHash eventType, VariantMap& eventData);
-
-private:
-    void CreateScene();
-    void MoveCamera(VariantMap& eventData);
 };
