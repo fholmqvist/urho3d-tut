@@ -11,7 +11,7 @@ void TutorialApp::Setup() {}
 
 void TutorialApp::Start()
 {
-    auto* input_ = GetSubsystem<Input>();
+    input_ = GetSubsystem<Input>();
 
     scene_ = new Scene(context_);
     scene_->CreateComponent<Octree>();
