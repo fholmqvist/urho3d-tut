@@ -40,4 +40,10 @@ public:
     virtual void Stop();
 
     void HandleUpdate(StringHash eventType, VariantMap& eventData);
+
+private:
+    void initScene();
+    Node* initCamera();
+    void initPlayer(Node* camNode);
+    void initViewport(Node* camNode);
 };
