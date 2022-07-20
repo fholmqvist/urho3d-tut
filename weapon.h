@@ -1,3 +1,5 @@
+#pragma once
+
 #include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/StaticModel.h>
 #include <Urho3D/Math/Vector3.h>
@@ -6,39 +8,18 @@
 #include <map>
 #include <string>
 
+#include "weapon_enums.h"
+#include "weapon_cache.h"
+
 using namespace std;
 using namespace Urho3D;
-
-enum class WeaponType
-{
-    Revolver
-};
-
-struct WeaponData
-{
-    string name;
-    unsigned short clipSize;
-    unsigned short damage;
-    unsigned short reloadTime;
-};
-
-static map<WeaponType, WeaponData> weapons = {
-    {WeaponType::Revolver, WeaponData{name : "Revolver", clipSize : 6, damage : 1, reloadTime : 80}}};
-
-enum class WeaponState
-{
-    Normal,
-    TriggerDown,
-    Reloading,
-    OutOfAmmo
-};
 
 class Weapon
 {
 public:
     Node* Node_;
 
-    explicit Weapon(WeaponData _data, Node* _node);
+    explicit Weapon(WeaponType _t, Node* _node);
 
     void Update();
     void TriggerDown();
@@ -46,6 +27,7 @@ public:
     void StartReload();
 
 private:
+    WeaponType type;
     WeaponData data;
     unsigned short ammo;
     unsigned short reloadTime;

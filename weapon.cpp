@@ -1,10 +1,11 @@
 #include "weapon.h"
 
-Weapon::Weapon(WeaponData _data, Node* _node)
+Weapon::Weapon(WeaponType _t, Node* _node)
 {
     Node_ = _node;
 
-    data = _data;
+    type = _t;
+    data = WeaponCache::Get(_t);
     ammo = data.clipSize;
 }
 
@@ -26,6 +27,10 @@ void Weapon::Update()
 
 void Weapon::TriggerDown()
 {
+    if (state == WeaponState::OutOfAmmo)
+    {
+        return;
+    }
     if (ammo == 0)
     {
         Weapon::StartReload();
@@ -63,10 +68,17 @@ void Weapon::StartReload()
     printf("reloading!\n");
 }
 
-// TODO: Ammo from player, edge cases.
 void Weapon::reload()
 {
-    ammo = data.clipSize;
+    int needed = data.clipSize - ammo;
+    int newAmmo = WeaponCache::TakeAmmo(type, needed);
+    if (newAmmo == 0)
+    {
+        state = WeaponState::OutOfAmmo;
+        printf("out of ammo!\n");
+        return;
+    }
+    ammo = newAmmo;
     state = WeaponState::Normal;
     printf("reloaded!\n");
 }

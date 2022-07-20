@@ -6,14 +6,7 @@ Player::Player(Input* _input, Node* _camNode, Node* _weaponNode)
 {
     input = _input;
     camNode = _camNode;
-    // TODO: Wrap this in a class.
-    auto exists = weapons.find(WeaponType::Revolver);
-    if (exists == weapons.end())
-    {
-        std::cout << "\nWeaponType::" << static_cast<int>(WeaponType::Revolver) << " does not exist in weapons\n\n";
-        exit(3);
-    }
-    weapon = new Weapon(weapons[WeaponType::Revolver], _weaponNode);
+    weapon = new Weapon(WeaponType::Revolver, _weaponNode);
 }
 
 void Player::Update(float timestep)

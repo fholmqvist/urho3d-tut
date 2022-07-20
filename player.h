@@ -8,6 +8,7 @@
 #include <Urho3D/Scene/Node.h>
 
 #include "weapon.h"
+#include "weapon_cache.h"
 
 using namespace Urho3D;
 

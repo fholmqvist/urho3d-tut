@@ -1,4 +1,13 @@
 {
     "makefile.extensionOutputFolder": "./.vscode",
-    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "files.associations": {
+        "*.html": "html",
+        "*.go": "go",
+        "*.html.erb": "erb",
+        "array": "cpp",
+        "string": "cpp",
+        "string_view": "cpp",
+        "iostream": "cpp"
+    }
 }
