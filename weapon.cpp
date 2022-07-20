@@ -1,11 +1,11 @@
 #include "weapon.h"
 
-Weapon::Weapon(Node* _node)
+Weapon::Weapon(WeaponData _data, Node* _node)
 {
     Node_ = _node;
 
-    clipSize = 8;
-    ammo = clipSize;
+    data = _data;
+    ammo = data.clipSize;
 }
 
 void Weapon::Update()
@@ -50,7 +50,7 @@ void Weapon::TriggerUp()
 
 void Weapon::StartReload()
 {
-    if (ammo == clipSize)
+    if (ammo == data.clipSize)
     {
         return;
     }
@@ -58,8 +58,7 @@ void Weapon::StartReload()
     {
         return;
     }
-    const unsigned short time = 80;
-    reloadTime = time;
+    reloadTime = data.reloadTime;
     state = WeaponState::Reloading;
     printf("reloading!\n");
 }
@@ -67,7 +66,7 @@ void Weapon::StartReload()
 // TODO: Ammo from player, edge cases.
 void Weapon::reload()
 {
-    ammo = clipSize;
+    ammo = data.clipSize;
     state = WeaponState::Normal;
     printf("reloaded!\n");
 }
