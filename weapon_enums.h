@@ -14,7 +14,9 @@ struct WeaponData
     string name;
     unsigned short clipSize;
     unsigned short damage;
-    unsigned short reloadTime;
+    float reloadTime;
+    float recoilBack;
+    float recoilRot;
 };
 
 enum class WeaponState

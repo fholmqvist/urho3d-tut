@@ -59,10 +59,13 @@ void Player::handleWeapon()
 {
     auto newPos = camNode->GetPosition();
     newPos += camNode->GetDirection() * 0.8f;
+    newPos -= camNode->GetDirection() * weapon->Recoil;
     newPos += camNode->GetRight() * 0.4f;
     newPos -= camNode->GetUp() * 0.2f;
     weapon->Node_->SetPosition(newPos);
-    weapon->Node_->SetRotation(camNode->GetRotation());
+    auto rot = camNode->GetRotation().EulerAngles();
+    rot += Vector3(-weapon->Pitch, 0.0f, 0.0f);
+    weapon->Node_->SetRotation(Quaternion(rot));
 
     if (input->GetMouseButtonDown(MOUSEB_LEFT))
     {

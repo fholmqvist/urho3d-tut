@@ -7,9 +7,10 @@
 
 #include <map>
 #include <string>
+#include <ctime>
 
-#include "weapon_enums.h"
 #include "weapon_cache.h"
+#include "weapon_enums.h"
 
 using namespace std;
 using namespace Urho3D;
@@ -18,6 +19,8 @@ class Weapon
 {
 public:
     Node* Node_;
+    float Pitch;
+    float Recoil;
 
     explicit Weapon(WeaponType _t, Node* _node);
 
@@ -30,12 +33,11 @@ private:
     WeaponType type;
     WeaponData data;
     unsigned short ammo;
-    unsigned short reloadTime;
+    time_t reloadTime;
     WeaponState state;
 
     Vector3 pos;
-    float yaw;
-    float pitch;
 
+    void handleRecoil();
     void reload();
 };

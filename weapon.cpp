@@ -7,20 +7,21 @@ Weapon::Weapon(WeaponType _t, Node* _node)
     type = _t;
     data = WeaponCache::Get(_t);
     ammo = data.clipSize;
+
+    Pitch = 0;
+    Recoil = 0;
 }
 
 void Weapon::Update()
 {
+    handleRecoil();
     if (state == WeaponState::Reloading)
     {
-        if (reloadTime == 0)
+
+        if (time(NULL) - reloadTime > data.reloadTime)
         {
             reload();
             return;
-        }
-        else
-        {
-            reloadTime--;
         }
     }
 }
@@ -40,6 +41,8 @@ void Weapon::TriggerDown()
     {
         return;
     }
+    Recoil += data.recoilBack / 10.0f;
+    Pitch += data.recoilRot * 10.0f;
     ammo--;
     state = WeaponState::TriggerDown;
     printf("bang!\n");
@@ -63,9 +66,29 @@ void Weapon::StartReload()
     {
         return;
     }
-    reloadTime = data.reloadTime;
+    reloadTime = time(NULL);
     state = WeaponState::Reloading;
     printf("reloading!\n");
+}
+
+void Weapon::handleRecoil()
+{
+    if (Pitch < 0.001)
+    {
+        Pitch = 0;
+    }
+    if (Pitch > 0)
+    {
+        Pitch *= 0.94f;
+    }
+    if (Recoil < 0.001)
+    {
+        Recoil = 0;
+    }
+    if (Recoil > 0)
+    {
+        Recoil *= 0.94f;
+    }
 }
 
 void Weapon::reload()

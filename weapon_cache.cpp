@@ -1,6 +1,8 @@
 #include "weapon_cache.h"
 
-std::vector<WeaponData> weapons = {{.name = "Revolver", .clipSize = 6, .damage = 1, .reloadTime = 80}};
+std::vector<WeaponData> weapons = {
+    {.name = "Revolver", .clipSize = 6, .damage = 1, .reloadTime = 1.0f, .recoilBack = 0.5f, .recoilRot = 1.4f}};
+
 std::vector<int> ammo = {weapons[0].clipSize * 4};
 
 WeaponCache::WeaponCache() {}
