@@ -1,17 +1,17 @@
 #include "player.h"
 
-Player::Player(Input* _input, Node* _camNode)
+Player::Player(Input* _input, Node* _camNode, Node* _weaponNode)
 {
     input = _input;
     camNode = _camNode;
-    weapon = new Weapon();
+    weapon = new Weapon(_weaponNode);
 }
 
 void Player::Update(float timestep)
 {
     rotate();
     move(timestep);
-    weapon->Update();
+    weapon->Update(camNode->GetPosition(), camNode->GetDirection());
     weaponInput();
 }
 
