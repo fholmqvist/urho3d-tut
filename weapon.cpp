@@ -12,12 +12,21 @@ Weapon::Weapon(WeaponType _t, Node* _node)
     Recoil = 0;
 }
 
+// Puts ammo back into cache.
+// Changes the weapon, reloads.
+void Weapon::ChangeWeapon(WeaponType t)
+{
+    WeaponCache::ReturnAmmo(type, ammo);
+    type = t;
+    data = WeaponCache::Get(t);
+    reload();
+}
+
 void Weapon::Update()
 {
     handleRecoil();
     if (state == WeaponState::Reloading)
     {
-
         if (time(NULL) - reloadTime > data.reloadTime)
         {
             reload();

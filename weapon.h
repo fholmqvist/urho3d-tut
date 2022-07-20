@@ -10,7 +10,7 @@
 #include <ctime>
 
 #include "weapon_cache.h"
-#include "weapon_enums.h"
+#include "weapon_types.h"
 
 using namespace std;
 using namespace Urho3D;
@@ -24,6 +24,7 @@ public:
 
     explicit Weapon(WeaponType _t, Node* _node);
 
+    void ChangeWeapon(WeaponType t);
     void Update();
     void TriggerDown();
     void TriggerUp();

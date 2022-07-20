@@ -67,6 +67,11 @@ void Player::handleWeapon()
     rot += Vector3(-weapon->Pitch, 0.0f, 0.0f);
     weapon->Node_->SetRotation(Quaternion(rot));
 
+    if (input->GetKeyDown(KEY_R))
+    {
+        weapon->StartReload();
+    }
+
     if (input->GetMouseButtonDown(MOUSEB_LEFT))
     {
         weapon->TriggerDown();

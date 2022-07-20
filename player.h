@@ -14,7 +14,6 @@ using namespace Urho3D;
 
 class Player
 {
-
 public:
     Player(Input* _input, Node* _camNode, Node* _weaponNode);
     void Update(float timestep);
