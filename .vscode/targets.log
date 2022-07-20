@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Jul 20 15:02:45 2022
+# Make data base, printed on Wed Jul 20 16:20:59 2022
 
 # Variables
 
@@ -119,11 +119,11 @@ HOME = /home/holmqvist
 # environment
 VSCODE_CLI = 1
 # environment
-VSCODE_CODE_CACHE_PATH = /home/holmqvist/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /home/holmqvist/.config/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
 # environment
 LOGNAME = holmqvist
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 +F = $(notdir $+)
 # environment
@@ -171,7 +171,7 @@ LANGUAGE = en_US
 # environment
 XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-7bb610f8-1.69.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-7bb610f8-1.69.2-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -213,7 +213,7 @@ LC_ADDRESS = sv_SE.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3110
+VSCODE_PID = 63770
 # variable set hash-table stats:
 # Load=101/1024=10%, Rehash=0, Collisions=11/126=9%
 
@@ -223,9 +223,9 @@ VSCODE_PID = 3110
 
 # Directories
 
-# . (device 66306, inode 3805696): 12 files, no impossibilities.
+# . (device 66306, inode 3805696): 14 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -243,7 +243,7 @@ all:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-19 19:39:46.214174626
+#  Last modified 2022-07-20 16:20:45.126379557
 #  File has been updated.
 #  Successfully updated.
 
@@ -270,12 +270,12 @@ run:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 18 / storage = 152 B / avg = 8 B
-# current buf: size = 8162 B / used = 152 B / count = 18 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 172 B / avg = 8 B
+# current buf: size = 8162 B / used = 172 B / count = 20 / avg = 8 B
 
-# strcache performance: lookups = 23 / hit rate = 21%
+# strcache performance: lookups = 25 / hit rate = 20%
 # hash-table stats:
-# Load=18/8192=0%, Rehash=0, Collisions=1/23=4%
-# Finished Make data base on Wed Jul 20 15:02:45 2022
+# Load=20/8192=0%, Rehash=0, Collisions=1/25=4%
+# Finished Make data base on Wed Jul 20 16:20:59 2022
 
  

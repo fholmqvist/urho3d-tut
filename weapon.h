@@ -14,6 +14,8 @@ class Weapon
 public:
     string Name;
 
+    explicit Weapon();
+
     void Update();
     void Fire();
     void StartReload();

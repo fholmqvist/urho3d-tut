@@ -13,8 +13,8 @@ class Player
 {
 
 public:
-    explicit Player(Input* input, Node* camNode);
-    void Move(float timestep);
+    Player(Input* input, Node* camNode);
+    void Update(float timestep);
 
 private:
     Input* input;
@@ -24,4 +24,8 @@ private:
     Vector3 vel;
     float yaw;
     float pitch;
+
+    void rotate();
+    void move(float timestep);
+    void weaponInput();
 };

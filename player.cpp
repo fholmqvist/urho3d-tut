@@ -7,10 +7,17 @@ Player::Player(Input* _input, Node* _camNode)
     weapon = new Weapon();
 }
 
-void Player::Move(float timestep)
+void Player::Update(float timestep)
+{
+    rotate();
+    move(timestep);
+    weapon->Update();
+    weaponInput();
+}
+
+void Player::rotate()
 {
     const float MOUSE_SENS = 5.0f / 100.0f;
-    const float MOVE_SPEED = 25.0f / 100.0f;
 
     IntVector2 mouseMove = input->GetMouseMove();
     yaw += MOUSE_SENS * mouseMove.x_;
@@ -18,6 +25,11 @@ void Player::Move(float timestep)
     pitch = Clamp(pitch, -90.0f, 90.0f);
 
     camNode->SetRotation(Quaternion(pitch, yaw, 0.0f));
+}
+
+void Player::move(float timestep)
+{
+    const float MOVE_SPEED = 25.0f / 100.0f;
 
     Vector3 move;
     if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
@@ -39,4 +51,12 @@ void Player::Move(float timestep)
     camNode->SetPosition(pos);
 
     vel *= 0.95f;
+}
+
+void Player::weaponInput()
+{
+    if (input->GetMouseButtonDown(MOUSEB_LEFT))
+    {
+        weapon->Fire();
+    }
 }

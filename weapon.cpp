@@ -1,8 +1,12 @@
 #include "weapon.h"
 
-Weapon::Weapon() {}
+Weapon::Weapon()
+{
+    clipSize = 8;
+    ammo = clipSize;
+}
 
-void Weapon::Fire()
+void Weapon::Update()
 {
     if (state == WeaponState::Reloading)
     {
@@ -26,7 +30,7 @@ void Weapon::Fire()
         return;
     }
     ammo--;
-    printf("bang!");
+    printf("bang!\n");
 }
 
 void Weapon::StartReload()
@@ -42,12 +46,13 @@ void Weapon::StartReload()
     const unsigned short time = 80;
     reloadTime = time;
     state = WeaponState::Reloading;
-    printf("reloading!");
+    printf("reloading!\n");
 }
 
 // TODO: Ammo from player, edge cases.
 void Weapon::reload()
 {
     ammo = clipSize;
-    printf("reloaded!");
+    state = WeaponState::Normal;
+    printf("reloaded!\n");
 }

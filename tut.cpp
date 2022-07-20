@@ -54,7 +54,7 @@ void TutorialApp::HandleUpdate(StringHash eventType, VariantMap& eventData)
 
     timestep_ = eventData[P_TIMESTEP].GetFloat();
 
-    player_->Move(timestep_);
+    player_->Update(timestep_);
 }
 
 URHO3D_DEFINE_APPLICATION_MAIN(TutorialApp)
