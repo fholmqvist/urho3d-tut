@@ -40,15 +40,15 @@ void TutorialApp::initScene()
 {
     scene_ = new Scene(context_);
     scene_->CreateComponent<Octree>();
-    ResourceCache* cache = GetSubsystem<ResourceCache>();
+    auto* cache = GetSubsystem<ResourceCache>();
 
-    Node* boxNode = scene_->CreateChild("Model Node");
-    StaticModel* boxObject = boxNode->CreateComponent<StaticModel>();
+    auto* boxNode = scene_->CreateChild("Model Node");
+    auto* boxObject = boxNode->CreateComponent<StaticModel>();
     boxObject->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
 
-    Node* lightNode = scene_->CreateChild("Light Node");
-    Light* light = lightNode->CreateComponent<Light>();
+    auto* lightNode = scene_->CreateChild("Light Node");
+    auto* light = lightNode->CreateComponent<Light>();
     light->SetLightType(LIGHT_DIRECTIONAL);
     lightNode->SetDirection(Vector3(0.6f, -1.0f, 0.8f));
 }
@@ -56,7 +56,7 @@ void TutorialApp::initScene()
 Node* TutorialApp::initCamera()
 {
     auto camNode = scene_->CreateChild("Camera");
-    Camera* camera = camNode->CreateComponent<Camera>();
+    auto* camera = camNode->CreateComponent<Camera>();
     auto cam = camNode->GetComponent<Camera>();
     cam->SetFarClip(100.0f);
     cam->SetFov(45.0f);
@@ -66,9 +66,9 @@ Node* TutorialApp::initCamera()
 
 void TutorialApp::initPlayer(Node* camNode)
 {
-    ResourceCache* cache = GetSubsystem<ResourceCache>();
-    Node* weaponNode = scene_->CreateChild("Weapon");
-    StaticModel* weaponModel = weaponNode->CreateComponent<StaticModel>();
+    auto* cache = GetSubsystem<ResourceCache>();
+    auto* weaponNode = scene_->CreateChild("Weapon");
+    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
     weaponModel->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
     player_ = new Player(input_, camNode, weaponNode);
@@ -77,6 +77,6 @@ void TutorialApp::initPlayer(Node* camNode)
 void TutorialApp::initViewport(Node* camNode)
 {
     SharedPtr<Viewport> viewport(new Viewport(context_, scene_, camNode->GetComponent<Camera>()));
-    Renderer* renderer = GetSubsystem<Renderer>();
+    auto* renderer = GetSubsystem<Renderer>();
     renderer->SetViewport(0, viewport);
 }
