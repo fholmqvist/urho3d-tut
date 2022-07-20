@@ -11,6 +11,7 @@ using namespace Urho3D;
 enum class WeaponState
 {
     Normal,
+    TriggerDown,
     Reloading,
     OutOfAmmo
 };
@@ -24,11 +25,11 @@ public:
     explicit Weapon(Node* _node);
 
     void Update();
-    void Fire();
+    void TriggerDown();
+    void TriggerUp();
     void StartReload();
 
 private:
-
     unsigned short clipSize;
     unsigned short ammo;
     unsigned short reloadTime;

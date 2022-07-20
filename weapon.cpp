@@ -24,15 +24,28 @@ void Weapon::Update()
     }
 }
 
-void Weapon::Fire()
+void Weapon::TriggerDown()
 {
     if (ammo == 0)
     {
         Weapon::StartReload();
         return;
     }
+    if (state == WeaponState::TriggerDown)
+    {
+        return;
+    }
     ammo--;
+    state = WeaponState::TriggerDown;
     printf("bang!\n");
+}
+
+void Weapon::TriggerUp()
+{
+    if (state == WeaponState::TriggerDown)
+    {
+        state = WeaponState::Normal;
+    }
 }
 
 void Weapon::StartReload()

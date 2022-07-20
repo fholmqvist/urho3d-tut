@@ -64,6 +64,11 @@ void Player::handleWeapon()
 
     if (input->GetMouseButtonDown(MOUSEB_LEFT))
     {
-        weapon->Fire();
+        weapon->TriggerDown();
+    }
+    // TODO: This is ugly.
+    else if (!input->GetMouseButtonDown(MOUSEB_LEFT))
+    {
+        weapon->TriggerUp();
     }
 }
