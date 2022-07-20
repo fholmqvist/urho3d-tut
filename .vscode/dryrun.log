@@ -1,0 +1,7 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/holmqvist/programming/urho3d/projects/tut/app/src/main/cpp'
+clear
+rake
+../../../../build/linux/bin/tut
+make: Leaving directory '/home/holmqvist/programming/urho3d/projects/tut/app/src/main/cpp'
+ 

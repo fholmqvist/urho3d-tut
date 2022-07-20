@@ -1,0 +1,281 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Wed Jul 20 15:02:45 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# environment
+DESKTOP_SESSION = dwm
+# environment
+OPAM_SWITCH_PREFIX = /home/holmqvist/.opam/default
+# default
+.SHELLFLAGS := -c
+# environment
+OCAML_TOPLEVEL_PATH = /home/holmqvist/.opam/default/lib/toplevel
+# environment
+XDG_SESSION_CLASS = user
+# environment
+XDG_SESSION_TYPE = x11
+# environment
+GTK3_MODULES = xapp-gtk3-module
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+XAUTHORITY = /home/holmqvist/.Xauthority
+# environment
+GDMSESSION = dwm
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+CURDIR := /home/holmqvist/programming/urho3d/projects/tut/app/src/main/cpp
+# makefile
+SHELL = /bin/sh
+# environment
+GDM_LANG = en_US
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# environment
+_ = /usr/bin/code
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-dwm:/etc/xdg
+# environment
+WALLABY_PRODUCTION = true
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# automatic
+@F = $(notdir $@)
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+XDG_DATA_DIRS = /usr/share/dwm:/home/holmqvist/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# environment
+LC_NAME = sv_SE.UTF-8
+# environment
+VSCODE_CWD = /home/holmqvist
+# environment
+XDG_SESSION_PATH = /org/freedesktop/DisplayManager/Session0
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+PATH = /home/holmqvist/.nix-profile/bin:/home/holmqvist/.opam/default/bin:/home/holmqvist/.cargo/bin:/home/holmqvist/.nix-profile/bin:/home/holmqvist/.local/bin:/home/holmqvist/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/holmqvist/.dotnet/tools:/home/holmqvist/bin/go/bin:/home/holmqvist/go/bin:/home/holmqvist/.nimble/bin:/home/holmqvist/.local/bin:/home/holmqvist/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/holmqvist/.dotnet/tools:/home/holmqvist/bin/go/bin:/home/holmqvist/go/bin:/home/holmqvist/bin/zig:/home/holmqvist/programming/zig/zigmod/zig-out/bin:/home/holmqvist/bin/cmake/bin
+# environment
+GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# environment
+XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/holmqvist
+# environment
+XDG_SESSION_DESKTOP = dwm
+# environment
+SSH_AUTH_SOCK = /tmp/ssh-mm9VpXPceXrq/agent.881
+# automatic
+%F = $(notdir $%)
+# environment
+DISPLAY = :0
+# environment
+NIX_SSL_CERT_FILE = /etc/ssl/certs/ca-certificates.crt
+# environment
+PWD = /home/holmqvist/programming/urho3d/projects/tut/app/src/main/cpp
+# environment
+QT_QPA_PLATFORMTHEME = qt5ct
+# default
+.LOADED := 
+# environment
+XDG_SEAT = seat0
+# environment
+SSH_AGENT_PID = 963
+# environment
+PKG_CONFIG_PATH = /home/holmqvist/.opam/default/lib/pkgconfig:
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = undefined
+# environment
+GTK_MODULES = gail:atk-bridge
+# environment
+MANPATH = /home/holmqvist/.nix-profile/share/man::/home/holmqvist/.opam/default/man
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/holmqvist
+# environment
+VSCODE_CLI = 1
+# environment
+VSCODE_CODE_CACHE_PATH = /home/holmqvist/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+# environment
+LOGNAME = holmqvist
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# automatic
++F = $(notdir $+)
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# environment
+XDG_VTNR = 7
+# environment
+MAKELEVEL := 0
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# environment
+NIX_PROFILES = /nix/var/nix/profiles/default /home/holmqvist/.nix-profile
+# environment
+COMPIZ_CONFIG_PROFILE = mint
+# environment
+XDG_SESSION_ID = c1
+# environment
+USER = holmqvist
+# environment
+CAML_LD_LIBRARY_PATH = /home/holmqvist/.opam/default/lib/stublibs:/usr/local/lib/ocaml/4.08.1/stublibs:/usr/lib/ocaml/stublibs
+# environment
+LC_MONETARY = sv_SE.UTF-8
+# makefile
+.DEFAULT_GOAL := run
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LC_TELEPHONE = sv_SE.UTF-8
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# environment
+LANGUAGE = en_US
+# environment
+XDG_SEAT_PATH = /org/freedesktop/DisplayManager/Seat0
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-7bb610f8-1.69.0-main.sock
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+GDK_BACKEND = x11
+# environment
+LC_PAPER = sv_SE.UTF-8
+# environment
+QT_ACCESSIBILITY = 1
+# default
+MAKEFILES := 
+# environment
+LC_NUMERIC = sv_SE.UTF-8
+# automatic
+<F = $(notdir $<)
+# environment
+LC_MEASUREMENT = sv_SE.UTF-8
+# environment
+LC_ALL = C
+# automatic
+^F = $(notdir $^)
+# default
+SUFFIXES := 
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+LC_IDENTIFICATION = sv_SE.UTF-8
+# default
+.RECIPEPREFIX := 
+# environment
+LC_ADDRESS = sv_SE.UTF-8
+# environment
+LANG = C
+# environment
+VSCODE_PID = 3110
+# variable set hash-table stats:
+# Load=101/1024=10%, Rehash=0, Collisions=11/126=9%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 66306, inode 3805696): 12 files, no impossibilities.
+
+# 12 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-07-19 19:39:46.214174626
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+run:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 2):
+	clear
+	rake
+	../../../../build/linux/bin/tut
+
+# files hash-table stats:
+# Load=5/1024=0%, Rehash=0, Collisions=0/15=0%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 18 / storage = 152 B / avg = 8 B
+# current buf: size = 8162 B / used = 152 B / count = 18 / avg = 8 B
+
+# strcache performance: lookups = 23 / hit rate = 21%
+# hash-table stats:
+# Load=18/8192=0%, Rehash=0, Collisions=1/23=4%
+# Finished Make data base on Wed Jul 20 15:02:45 2022
+
+ 

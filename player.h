@@ -5,6 +5,8 @@
 #include <Urho3D/Math/Vector3.h>
 #include <Urho3D/Scene/Node.h>
 
+#include "weapon.h"
+
 using namespace Urho3D;
 
 class Player
@@ -15,10 +17,11 @@ public:
     void Move(float timestep);
 
 private:
-    Input* input_;
-    Node* camNode_;
+    Input* input;
+    Node* camNode;
+    Weapon* weapon;
 
-    Vector3 vel_;
-    float yaw_;
-    float pitch_;
+    Vector3 vel;
+    float yaw;
+    float pitch;
 };
