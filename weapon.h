@@ -19,15 +19,15 @@ class Weapon
 {
 public:
     string Name;
+    Node* Node_;
 
     explicit Weapon(Node* _node);
 
-    void Update(Vector3 playerPos, Vector3 playerDirection);
+    void Update();
     void Fire();
     void StartReload();
 
 private:
-    Node* node;
 
     unsigned short clipSize;
     unsigned short ammo;

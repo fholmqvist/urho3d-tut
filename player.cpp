@@ -11,8 +11,8 @@ void Player::Update(float timestep)
 {
     rotate();
     move(timestep);
-    weapon->Update(camNode->GetPosition(), camNode->GetDirection());
-    weaponInput();
+    weapon->Update();
+    handleWeapon();
 }
 
 void Player::rotate()
@@ -53,8 +53,15 @@ void Player::move(float timestep)
     vel *= 0.95f;
 }
 
-void Player::weaponInput()
+void Player::handleWeapon()
 {
+    auto newPos = camNode->GetPosition();
+    newPos += camNode->GetDirection() * 0.8f;
+    newPos += camNode->GetRight() * 0.4f;
+    newPos -= camNode->GetUp() * 0.2f;
+    weapon->Node_->SetPosition(newPos);
+    weapon->Node_->SetRotation(camNode->GetRotation());
+
     if (input->GetMouseButtonDown(MOUSEB_LEFT))
     {
         weapon->Fire();

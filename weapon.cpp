@@ -2,18 +2,14 @@
 
 Weapon::Weapon(Node* _node)
 {
+    Node_ = _node;
+
     clipSize = 8;
     ammo = clipSize;
-
-    node = _node;
 }
 
-void Weapon::Update(Vector3 playerPos, Vector3 playerDirection)
+void Weapon::Update()
 {
-    // TODO: Position correctly.
-    auto newPos = playerPos + playerDirection;
-    node->SetPosition(newPos);
-
     if (state == WeaponState::Reloading)
     {
         if (reloadTime == 0)

@@ -29,5 +29,5 @@ private:
 
     void rotate();
     void move(float timestep);
-    void weaponInput();
+    void handleWeapon();
 };
