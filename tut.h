@@ -13,6 +13,7 @@
 #include <Urho3D/Graphics/Viewport.h>
 #include <Urho3D/Input/InputEvents.h>
 #include <Urho3D/Physics/PhysicsWorld.h>
+#include <Urho3D/Physics/RigidBody.h>
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Scene/Scene.h>
 #include <Urho3D/UI/UI.h>
