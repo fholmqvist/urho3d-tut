@@ -50,8 +50,8 @@ void Weapon::TriggerDown()
     {
         return;
     }
-    Recoil += data.recoilBack / 10.0f;
-    Pitch += data.recoilRot * 10.0f;
+    Recoil += data.recoilBack / 10;
+    Pitch += data.recoilRot * 10;
     ammo--;
     state = WeaponState::TriggerDown;
     printf("bang!\n");

@@ -45,8 +45,8 @@ void TutorialApp::initScene()
     auto* cache = GetSubsystem<ResourceCache>();
 
     Node* floorNode = scene_->CreateChild("Floor");
-    floorNode->SetPosition(Vector3(0.0f, -1.0f, 0.0f));
-    floorNode->SetScale(Vector3(200.0f, 1.0f, 200.0f));
+    floorNode->SetPosition(Vector3(0, -1.0f, 0));
+    floorNode->SetScale(Vector3(200, 1.0f, 200));
     auto* object = floorNode->CreateComponent<StaticModel>();
     object->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     object->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
@@ -55,6 +55,8 @@ void TutorialApp::initScene()
     floorShape->SetBox(Vector3::ONE);
 
     auto* boxNode = scene_->CreateChild("Model Node");
+    boxNode->SetPosition(Vector3(0, 1.0f, 0));
+    boxNode->SetScale(2.5f);
     auto* boxObject = boxNode->CreateComponent<StaticModel>();
     boxObject->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
@@ -74,9 +76,9 @@ Node* TutorialApp::initCamera()
     auto camNode = scene_->CreateChild("Camera");
     auto* camera = camNode->CreateComponent<Camera>();
     auto cam = camNode->GetComponent<Camera>();
-    cam->SetFarClip(100.0f);
+    cam->SetFarClip(100);
     cam->SetFov(45.0f);
-    camNode->Translate(Vector3(0, 0, -2));
+    camNode->Translate(Vector3(0, Player::HEIGHT, -5));
     return camNode;
 }
 

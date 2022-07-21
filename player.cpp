@@ -5,19 +5,19 @@
 Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");
-    auto* body = playerBody->CreateComponent<RigidBody>();
-    body->SetMass(1.0f);
-    body->SetAngularFactor(Vector3::ZERO);
-    body->SetCollisionEventMode(COLLISION_ALWAYS);
+    auto* rb = playerBody->CreateComponent<RigidBody>();
+    rb->SetMass(1.0f);
+    rb->SetAngularFactor(Vector3::ZERO);
+    rb->SetCollisionEventMode(COLLISION_ALWAYS);
     auto* shape = playerBody->CreateComponent<CollisionShape>();
-    auto const PLAYER_HEIGHT = 1.8f;
-    shape->SetCapsule(0.5f, PLAYER_HEIGHT, Vector3(0.0f, PLAYER_HEIGHT / 2.0f, 0.0f));
+    shape->SetCapsule(2.0f, HEIGHT, Vector3(0, HEIGHT / 2.0f, 0));
 
     auto* weaponNode = scene_->CreateChild("Weapon");
     auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
     weaponModel->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
 
+    body = playerBody;
     input = scene_->GetSubsystem<Input>();
     camNode = _camNode;
     weapon = new Weapon(WeaponType::Revolver, weaponNode);
@@ -33,20 +33,16 @@ void Player::Update(float timestep)
 
 void Player::rotate()
 {
-    const float MOUSE_SENS = 5.0f / 100.0f;
-
     IntVector2 mouseMove = input->GetMouseMove();
     yaw += MOUSE_SENS * mouseMove.x_;
     pitch += MOUSE_SENS * mouseMove.y_;
     pitch = Clamp(pitch, -90.0f, 90.0f);
 
-    camNode->SetRotation(Quaternion(pitch, yaw, 0.0f));
+    camNode->SetRotation(Quaternion(pitch, yaw, 0));
 }
 
 void Player::move(float timestep)
 {
-    const float MOVE_SPEED = 25.0f / 100.0f;
-
     Vector3 move;
     if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
         move += Vector3::FORWARD;
@@ -65,6 +61,7 @@ void Player::move(float timestep)
     auto pos = camNode->GetPosition();
     pos.y_ = oldY;
     camNode->SetPosition(pos);
+    body->SetPosition(pos - Vector3(0, HEIGHT / 2.0f, 0));
 
     vel *= 0.95f;
 }
@@ -78,7 +75,7 @@ void Player::handleWeapon()
     newPos -= camNode->GetUp() * 0.2f;
     weapon->Node_->SetPosition(newPos);
     auto rot = camNode->GetRotation().EulerAngles();
-    rot += Vector3(-weapon->Pitch, 0.0f, 0.0f);
+    rot += Vector3(-weapon->Pitch, 0, 0);
     weapon->Node_->SetRotation(Quaternion(rot));
 
     if (input->GetKeyDown(KEY_R))
