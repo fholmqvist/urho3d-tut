@@ -2,11 +2,25 @@
 
 #include "player.h"
 
-Player::Player(Input* _input, Node* _camNode, Node* _weaponNode)
+Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 {
-    input = _input;
+    Node* playerBody = scene_->CreateChild("PlayerBody");
+    auto* body = playerBody->CreateComponent<RigidBody>();
+    body->SetMass(1.0f);
+    body->SetAngularFactor(Vector3::ZERO);
+    body->SetCollisionEventMode(COLLISION_ALWAYS);
+    auto* shape = playerBody->CreateComponent<CollisionShape>();
+    auto const PLAYER_HEIGHT = 1.8f;
+    shape->SetCapsule(0.5f, PLAYER_HEIGHT, Vector3(0.0f, PLAYER_HEIGHT / 2.0f, 0.0f));
+
+    auto* weaponNode = scene_->CreateChild("Weapon");
+    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
+    weaponModel->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
+    weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
+
+    input = scene_->GetSubsystem<Input>();
     camNode = _camNode;
-    weapon = new Weapon(WeaponType::Revolver, _weaponNode);
+    weapon = new Weapon(WeaponType::Revolver, weaponNode);
 }
 
 void Player::Update(float timestep)

@@ -3,9 +3,13 @@
 #include <Urho3D/Core/Context.h>
 #include <Urho3D/Graphics/Model.h>
 #include <Urho3D/Graphics/StaticModel.h>
+#include <Urho3D/Physics/RigidBody.h>
+#include <Urho3D/Resource/ResourceCache.h>
+#include <Urho3D/Core/Object.h>
 #include <Urho3D/Input/Input.h>
 #include <Urho3D/Math/Vector3.h>
-#include <Urho3D/Scene/Node.h>
+#include <Urho3D/Physics/CollisionShape.h>
+#include <Urho3D/Scene/Scene.h>
 
 #include "weapon.h"
 #include "weapon_cache.h"
@@ -15,7 +19,7 @@ using namespace Urho3D;
 class Player
 {
 public:
-    Player(Input* _input, Node* _camNode, Node* _weaponNode);
+    Player(Scene* scene_, ResourceCache* cache, Node* _camNode);
     void Update(float timestep);
 
 private:

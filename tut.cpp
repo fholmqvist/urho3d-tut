@@ -16,7 +16,8 @@ void TutorialApp::Start()
 
     initScene();
     auto* cam = initCamera();
-    initPlayer(cam);
+    auto* cache = GetSubsystem<ResourceCache>();
+    player_ = new Player(scene_, cache, cam);
     initViewport(cam);
 
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(TutorialApp, HandleUpdate));
@@ -40,12 +41,15 @@ void TutorialApp::initScene()
 {
     scene_ = new Scene(context_);
     scene_->CreateComponent<Octree>();
+    scene_->CreateComponent<PhysicsWorld>();
     auto* cache = GetSubsystem<ResourceCache>();
 
     auto* boxNode = scene_->CreateChild("Model Node");
     auto* boxObject = boxNode->CreateComponent<StaticModel>();
     boxObject->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
+    auto* shape = boxNode->CreateComponent<CollisionShape>();
+    shape->SetBox(Vector3::ONE);
 
     auto* lightNode = scene_->CreateChild("Light Node");
     auto* light = lightNode->CreateComponent<Light>();
@@ -62,16 +66,6 @@ Node* TutorialApp::initCamera()
     cam->SetFov(45.0f);
     camNode->Translate(Vector3(0, 0, -2));
     return camNode;
-}
-
-void TutorialApp::initPlayer(Node* camNode)
-{
-    auto* cache = GetSubsystem<ResourceCache>();
-    auto* weaponNode = scene_->CreateChild("Weapon");
-    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
-    weaponModel->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
-    weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
-    player_ = new Player(input_, camNode, weaponNode);
 }
 
 void TutorialApp::initViewport(Node* camNode)
