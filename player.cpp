@@ -8,6 +8,7 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
     auto* rb = playerBody->CreateComponent<RigidBody>();
     rb->SetAngularFactor(Vector3::ZERO);
     rb->SetCollisionEventMode(COLLISION_ALWAYS);
+    rb->SetPosition(_camNode->GetPosition());
     auto* shape = playerBody->CreateComponent<CollisionShape>();
     shape->SetCapsule(2.0f, HEIGHT, Vector3(0, HEIGHT / 2.0f, 0));
 
@@ -55,12 +56,18 @@ void Player::move(float timestep)
     move.Normalize();
     vel += move * MOVE_SPEED * timestep;
 
-    auto oldY = camNode->GetPosition().y_;
-    camNode->Translate(vel);
-    auto pos = camNode->GetPosition();
-    pos.y_ = oldY;
-    camNode->SetPosition(pos);
-    body->SetPosition(pos - Vector3(0, HEIGHT / 2.0f, 0));
+    // auto oldY = camNode->GetPosition().y_;
+    // camNode->Translate(vel);
+    // auto pos = camNode->GetPosition();
+    // pos.y_ = oldY;
+
+    auto* rb = body->GetComponent<RigidBody>();
+    rb->ApplyForce(vel * 100.0f);
+    auto rbPos = rb->GetPosition();
+    camNode->SetPosition(Vector3(rbPos.x_, HEIGHT, rbPos.z_));
+
+    // camNode->SetPosition(pos);
+    // body->SetPosition(pos - Vector3(0, HEIGHT / 2.0f, 0));
 
     vel *= 0.95f;
 }
