@@ -6,7 +6,6 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");
     auto* rb = playerBody->CreateComponent<RigidBody>();
-    rb->SetMass(1.0f);
     rb->SetAngularFactor(Vector3::ZERO);
     rb->SetCollisionEventMode(COLLISION_ALWAYS);
     auto* shape = playerBody->CreateComponent<CollisionShape>();
