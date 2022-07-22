@@ -9,6 +9,21 @@ WeaponCache::WeaponCache() {}
 
 WeaponData WeaponCache::Get(WeaponType t) { return __weapons[static_cast<int>(t)]; }
 
+void WeaponCache::LoadModel(ResourceCache* cache, StaticModel* weaponModel, WeaponType t)
+{
+    String modelName;
+    switch (t)
+    {
+    case WeaponType::Revolver:
+        modelName = "Box";
+        break;
+    default:
+        printf("\nWeaponCache::LoadModel: unhandled WeaponType::%d\n\n", static_cast<int>(t));
+        exit(3);
+    }
+    weaponModel->SetModel(cache->GetResource<Model>("Models/" + modelName + ".mdl"));
+}
+
 int WeaponCache::TakeAmmo(WeaponType t, int amount)
 {
     int rem = __ammo[static_cast<int>(t)];

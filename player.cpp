@@ -12,9 +12,10 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
     shape->SetCapsule(2.0f, HEIGHT, Vector3(0, HEIGHT / 2.0f, 0));
 
     auto* weaponNode = scene_->CreateChild("Weapon");
-    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
-    weaponModel->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
+    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
+    WeaponCache::LoadModel(cache, weaponModel, WeaponType::Revolver);
+
 
     body = playerBody;
     input = scene_->GetSubsystem<Input>();
