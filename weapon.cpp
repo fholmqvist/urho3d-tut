@@ -1,30 +1,26 @@
 #include "weapon.h"
 
-Weapon::Weapon(WeaponType _t, Node* _node)
+Weapon::Weapon(ResourceCache* _cache, WeaponType _t, Node* _node)
 {
     Node_ = _node;
-
-    type = _t;
-    data = WeaponCache::Get(_t);
-    ammo = data.clipSize;
-    fireTime = Time::GetSystemTime();
-
-    Pitch = 0;
-    Recoil = 0;
+    Change(_cache, _t);
 }
 
 // Puts ammo back into cache.
 // Changes the weapon, reloads.
-void Weapon::Change(WeaponType t)
+void Weapon::Change(ResourceCache* _cache, WeaponType t)
 {
     if (type == t)
     {
         return;
     }
-    WeaponCache::ReturnAmmo(type, ammo);
+    WeaponCache::ReturnAmmo(t, ammo);
+    WeaponCache::LoadModel(_cache, Node_->GetComponent<StaticModel>(), t);
     type = t;
-    data = WeaponCache::Get(t);
+    data = WeaponCache::GetData(t);
     fireTime = Time::GetSystemTime();
+    Pitch = 0;
+    Recoil = 0;
     reload();
 }
 

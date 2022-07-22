@@ -22,9 +22,9 @@ public:
     float Pitch;
     float Recoil;
 
-    explicit Weapon(WeaponType _t, Node* _node);
+    explicit Weapon(ResourceCache* _cache, WeaponType _t, Node* _node);
 
-    void Change(WeaponType t);
+    void Change(ResourceCache* _cache, WeaponType t);
     void Update();
     void TriggerDown();
     void TriggerUp();

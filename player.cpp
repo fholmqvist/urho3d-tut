@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
+Player::Player(Scene* scene_, ResourceCache* _cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");
     auto* rb = playerBody->CreateComponent<RigidBody>();
@@ -13,13 +13,14 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 
     auto* weaponNode = scene_->CreateChild("Weapon");
     weaponNode->SetScale(0.12);
-    auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
-    WeaponCache::LoadModel(cache, weaponModel, WeaponType::Revolver);
+    weaponNode->CreateComponent<StaticModel>();
 
     body = playerBody;
-    input = scene_->GetSubsystem<Input>();
     cam = _camNode;
-    weapon = new Weapon(WeaponType::Revolver, weaponNode);
+    weapon = new Weapon(_cache, WeaponType::Revolver, weaponNode);
+
+    cache = _cache;
+    input = scene_->GetSubsystem<Input>();
 }
 
 void Player::Update(float timestep)
@@ -78,11 +79,11 @@ void Player::handleWeapon()
 
     if (input->GetKeyDown(KEY_1))
     {
-        weapon->Change(WeaponType::Revolver);
+        weapon->Change(cache, WeaponType::Revolver);
     }
     if (input->GetKeyDown(KEY_2))
     {
-        weapon->Change(WeaponType::Smg);
+        weapon->Change(cache, WeaponType::Smg);
     }
 
     if (input->GetKeyDown(KEY_R))

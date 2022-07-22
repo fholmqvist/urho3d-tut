@@ -6,6 +6,7 @@ using namespace Urho3D;
 
 enum class WeaponType
 {
+    None,
     Revolver,
     Smg
 };
@@ -18,7 +19,7 @@ struct WeaponData
     unsigned short clipSize;
     unsigned short damage;
     unsigned int fireRate; // milliseconds
-    float reloadTime; // seconds
+    unsigned int reloadTime;      // milliseconds
     float recoilBack;
     float recoilRot;
     bool constantFire;

@@ -17,7 +17,7 @@ class WeaponCache
 {
 public:
     explicit WeaponCache();
-    static WeaponData Get(WeaponType t);
+    static WeaponData GetData(WeaponType t);
     static void LoadModel(ResourceCache* cache, StaticModel* weaponModel, WeaponType t);
     static int TakeAmmo(WeaponType t, int amount);
     static void ReturnAmmo(WeaponType t, int amount);

@@ -19,7 +19,7 @@ using namespace Urho3D;
 class Player
 {
 public:
-    Player(Scene* scene_, ResourceCache* cache, Node* _camNode);
+    Player(Scene* scene_, ResourceCache* _cache, Node* _camNode);
     void Update(float timestep);
 
     static constexpr auto HEIGHT = 1.8f;
@@ -28,9 +28,11 @@ public:
 
 private:
     Node* body;
-    Input* input;
     Node* cam;
     Weapon* weapon;
+    
+    ResourceCache* cache;
+    Input* input;
 
     Vector3 vel;
     float yaw;
