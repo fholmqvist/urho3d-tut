@@ -61,7 +61,6 @@ void TutorialApp::initScene()
     boxObject->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
     boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
     auto* body = boxNode->CreateComponent<RigidBody>();
-    body->SetMass(1.0f);
     auto* shape = boxNode->CreateComponent<CollisionShape>();
     shape->SetBox(Vector3::ONE);
 

@@ -1,11 +1,10 @@
-#include <iostream>
-
 #include "player.h"
 
 Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");
     auto* rb = playerBody->CreateComponent<RigidBody>();
+    rb->SetMass(80.0f);
     rb->SetAngularFactor(Vector3::ZERO);
     rb->SetCollisionEventMode(COLLISION_ALWAYS);
     rb->SetPosition(_camNode->GetPosition());
@@ -19,7 +18,7 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
 
     body = playerBody;
     input = scene_->GetSubsystem<Input>();
-    camNode = _camNode;
+    cam = _camNode;
     weapon = new Weapon(WeaponType::Revolver, weaponNode);
 }
 
@@ -38,7 +37,8 @@ void Player::rotate()
     pitch += MOUSE_SENS * mouseMove.y_;
     pitch = Clamp(pitch, -90.0f, 90.0f);
 
-    camNode->SetRotation(Quaternion(pitch, yaw, 0));
+    cam->SetRotation(Quaternion(pitch, yaw, 0));
+    body->SetRotation(Quaternion(0, yaw, 0));
 }
 
 void Player::move(float timestep)
@@ -54,33 +54,25 @@ void Player::move(float timestep)
         move += Vector3::RIGHT;
 
     move.Normalize();
-    vel += move * MOVE_SPEED * timestep;
-
-    // auto oldY = camNode->GetPosition().y_;
-    // camNode->Translate(vel);
-    // auto pos = camNode->GetPosition();
-    // pos.y_ = oldY;
+    vel += move * MOVE_FORCE * timestep;
 
     auto* rb = body->GetComponent<RigidBody>();
-    rb->ApplyForce(vel * 100.0f);
+    rb->SetLinearVelocity(body->GetRotation() * vel);
     auto rbPos = rb->GetPosition();
-    camNode->SetPosition(Vector3(rbPos.x_, HEIGHT, rbPos.z_));
-
-    // camNode->SetPosition(pos);
-    // body->SetPosition(pos - Vector3(0, HEIGHT / 2.0f, 0));
+    cam->SetPosition(Vector3(rbPos.x_, HEIGHT, rbPos.z_));
 
     vel *= 0.95f;
 }
 
 void Player::handleWeapon()
 {
-    auto newPos = camNode->GetPosition();
-    newPos += camNode->GetDirection() * 0.8f;
-    newPos -= camNode->GetDirection() * weapon->Recoil;
-    newPos += camNode->GetRight() * 0.4f;
-    newPos -= camNode->GetUp() * 0.2f;
+    auto newPos = cam->GetPosition();
+    newPos += cam->GetDirection() * 0.8f;
+    newPos -= cam->GetDirection() * weapon->Recoil;
+    newPos += cam->GetRight() * 0.4f;
+    newPos -= cam->GetUp() * 0.2f;
     weapon->Node_->SetPosition(newPos);
-    auto rot = camNode->GetRotation().EulerAngles();
+    auto rot = cam->GetRotation().EulerAngles();
     rot += Vector3(-weapon->Pitch, 0, 0);
     weapon->Node_->SetRotation(Quaternion(rot));
 

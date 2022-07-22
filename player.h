@@ -24,12 +24,12 @@ public:
 
     static constexpr auto HEIGHT = 1.8f;
     static constexpr auto MOUSE_SENS = 5.0f / 100;
-    static constexpr auto MOVE_SPEED = 75.0f / 100;
+    static constexpr auto MOVE_FORCE = 225.0f;
 
 private:
     Node* body;
     Input* input;
-    Node* camNode;
+    Node* cam;
     Weapon* weapon;
 
     Vector3 vel;
