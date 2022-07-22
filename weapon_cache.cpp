@@ -1,9 +1,25 @@
 #include "weapon_cache.h"
 
 std::vector<WeaponData> __weapons = {
-    {.name = "Revolver", .clipSize = 6, .damage = 1, .reloadTime = 1.0f, .recoilBack = 1.5f, .recoilRot = 4.0f}};
+    {.name = "Revolver",
+     .clipSize = 6,
+     .damage = 1,
+     .fireRate = 0,
+     .reloadTime = 1.0f,
+     .recoilBack = 1.5f,
+     .recoilRot = 4.0f,
+     .constantFire = false},
+    {.name = "Smg",
+     .clipSize = 30,
+     .damage = 1,
+     .fireRate = 100,
+     .reloadTime = 1.0f,
+     .recoilBack = 0.5f,
+     .recoilRot = 1.0f,
+     .constantFire = true},
+};
 
-std::vector<int> __ammo = {__weapons[0].clipSize * 4};
+std::vector<int> __ammo = {__weapons[0].clipSize * 4, __weapons[1].clipSize * 2};
 
 WeaponCache::WeaponCache() {}
 
@@ -11,22 +27,14 @@ WeaponData WeaponCache::Get(WeaponType t) { return __weapons[static_cast<int>(t)
 
 void WeaponCache::LoadModel(ResourceCache* cache, StaticModel* weaponModel, WeaponType t)
 {
-    String modelName;
-    switch (t)
-    {
-    case WeaponType::Revolver:
-        modelName = "Revolver";
-        break;
-    default:
-        printf("\nWeaponCache::LoadModel: unhandled WeaponType::%d\n\n", static_cast<int>(t));
-        exit(3);
-    }
-    weaponModel->SetModel(cache->GetResource<Model>("Models/" + modelName + ".mdl"));
+    auto path = "Models/" + WeaponCache::Get(t).name + ".mdl";
+    weaponModel->SetModel(cache->GetResource<Model>(path));
 }
 
 int WeaponCache::TakeAmmo(WeaponType t, int amount)
 {
-    int rem = __ammo[static_cast<int>(t)];
+    auto idx = static_cast<int>(t);
+    int rem = __ammo[idx];
     if (rem == 0)
     {
         return rem;
@@ -35,7 +43,7 @@ int WeaponCache::TakeAmmo(WeaponType t, int amount)
     {
         amount = rem;
     }
-    __ammo[static_cast<int>(t)] = rem - amount;
+    __ammo[idx] = rem - amount;
     return amount;
 }
 

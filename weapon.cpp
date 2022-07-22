@@ -7,6 +7,7 @@ Weapon::Weapon(WeaponType _t, Node* _node)
     type = _t;
     data = WeaponCache::Get(_t);
     ammo = data.clipSize;
+    fireTime = Time::GetSystemTime();
 
     Pitch = 0;
     Recoil = 0;
@@ -14,11 +15,16 @@ Weapon::Weapon(WeaponType _t, Node* _node)
 
 // Puts ammo back into cache.
 // Changes the weapon, reloads.
-void Weapon::ChangeWeapon(WeaponType t)
+void Weapon::Change(WeaponType t)
 {
+    if (type == t)
+    {
+        return;
+    }
     WeaponCache::ReturnAmmo(type, ammo);
     type = t;
     data = WeaponCache::Get(t);
+    fireTime = Time::GetSystemTime();
     reload();
 }
 
@@ -27,7 +33,7 @@ void Weapon::Update()
     handleRecoil();
     if (state == WeaponState::Reloading)
     {
-        if (time(NULL) - reloadTime > data.reloadTime)
+        if (Time::GetSystemTime() - reloadTime > data.reloadTime)
         {
             reload();
             return;
@@ -46,7 +52,11 @@ void Weapon::TriggerDown()
         Weapon::StartReload();
         return;
     }
-    if (state == WeaponState::TriggerDown)
+    if (!data.constantFire && state == WeaponState::TriggerDown)
+    {
+        return;
+    }
+    if (Time::GetSystemTime() - fireTime < data.fireRate)
     {
         return;
     }
@@ -54,6 +64,7 @@ void Weapon::TriggerDown()
     Pitch += data.recoilRot * 10;
     ammo--;
     state = WeaponState::TriggerDown;
+    fireTime = Time::GetSystemTime();
     printf("bang!\n");
 }
 
@@ -75,7 +86,7 @@ void Weapon::StartReload()
     {
         return;
     }
-    reloadTime = time(NULL);
+    reloadTime = Time::GetSystemTime();
     state = WeaponState::Reloading;
     printf("reloading!\n");
 }

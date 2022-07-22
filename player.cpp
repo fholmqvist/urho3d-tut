@@ -76,6 +76,15 @@ void Player::handleWeapon()
     rot += Vector3(-weapon->Pitch + 180, 0, 180);
     weapon->Node_->SetRotation(Quaternion(rot));
 
+    if (input->GetKeyDown(KEY_1))
+    {
+        weapon->Change(WeaponType::Revolver);
+    }
+    if (input->GetKeyDown(KEY_2))
+    {
+        weapon->Change(WeaponType::Smg);
+    }
+
     if (input->GetKeyDown(KEY_R))
     {
         weapon->StartReload();

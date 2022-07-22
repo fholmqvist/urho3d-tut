@@ -4,10 +4,10 @@
 #include <Urho3D/Graphics/StaticModel.h>
 #include <Urho3D/Math/Vector3.h>
 #include <Urho3D/Scene/Node.h>
+#include <Urho3D/Core/Timer.h>
 
 #include <map>
 #include <string>
-#include <ctime>
 
 #include "weapon_cache.h"
 #include "weapon_types.h"
@@ -24,7 +24,7 @@ public:
 
     explicit Weapon(WeaponType _t, Node* _node);
 
-    void ChangeWeapon(WeaponType t);
+    void Change(WeaponType t);
     void Update();
     void TriggerDown();
     void TriggerUp();
@@ -34,7 +34,8 @@ private:
     WeaponType type;
     WeaponData data;
     unsigned short ammo;
-    time_t reloadTime;
+    unsigned int fireTime;
+    unsigned int reloadTime;
     WeaponState state;
 
     Vector3 pos;
