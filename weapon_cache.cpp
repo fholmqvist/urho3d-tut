@@ -1,7 +1,7 @@
 #include "weapon_cache.h"
 
 std::vector<WeaponData> __weapons = {
-    {.name = "Revolver", .clipSize = 6, .damage = 1, .reloadTime = 1.0f, .recoilBack = 0.5f, .recoilRot = 1.4f}};
+    {.name = "Revolver", .clipSize = 6, .damage = 1, .reloadTime = 1.0f, .recoilBack = 1.5f, .recoilRot = 4.0f}};
 
 std::vector<int> __ammo = {__weapons[0].clipSize * 4};
 
@@ -15,7 +15,7 @@ void WeaponCache::LoadModel(ResourceCache* cache, StaticModel* weaponModel, Weap
     switch (t)
     {
     case WeaponType::Revolver:
-        modelName = "Box";
+        modelName = "Revolver";
         break;
     default:
         printf("\nWeaponCache::LoadModel: unhandled WeaponType::%d\n\n", static_cast<int>(t));

@@ -12,10 +12,9 @@ Player::Player(Scene* scene_, ResourceCache* cache, Node* _camNode)
     shape->SetCapsule(2.0f, HEIGHT, Vector3(0, HEIGHT / 2.0f, 0));
 
     auto* weaponNode = scene_->CreateChild("Weapon");
-    weaponNode->SetScale(Vector3(0.1, 0.1, 0.1));
+    weaponNode->SetScale(0.12);
     auto* weaponModel = weaponNode->CreateComponent<StaticModel>();
     WeaponCache::LoadModel(cache, weaponModel, WeaponType::Revolver);
-
 
     body = playerBody;
     input = scene_->GetSubsystem<Input>();
@@ -70,11 +69,11 @@ void Player::handleWeapon()
     auto newPos = cam->GetPosition();
     newPos += cam->GetDirection() * 0.8f;
     newPos -= cam->GetDirection() * weapon->Recoil;
-    newPos += cam->GetRight() * 0.4f;
+    newPos += cam->GetRight() * 0.2f;
     newPos -= cam->GetUp() * 0.2f;
     weapon->Node_->SetPosition(newPos);
     auto rot = cam->GetRotation().EulerAngles();
-    rot += Vector3(-weapon->Pitch, 0, 0);
+    rot += Vector3(-weapon->Pitch + 180, 0, 180);
     weapon->Node_->SetRotation(Quaternion(rot));
 
     if (input->GetKeyDown(KEY_R))
