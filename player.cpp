@@ -103,7 +103,7 @@ void Player::handleWeapon()
     {
         weapon->TriggerDown();
     }
-    else if (!input->GetMouseButtonDown(MOUSEB_LEFT))
+    else
     {
         weapon->TriggerUp();
     }
