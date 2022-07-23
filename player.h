@@ -14,12 +14,10 @@
 #include "weapon.h"
 #include "weapon_cache.h"
 
-using namespace Urho3D;
-
 class Player
 {
 public:
-    Player(Scene* scene_, ResourceCache* _cache, Node* _camNode);
+    Player(Urho3D::Scene* scene_, Urho3D::ResourceCache* _cache, Urho3D::Node* _camNode);
     void Update(float timestep);
 
     static constexpr auto HEIGHT = 1.8f;
@@ -27,14 +25,14 @@ public:
     static constexpr auto MOVE_FORCE = 225.0f;
 
 private:
-    Node* body;
-    Node* cam;
+    Urho3D::Node* body;
+    Urho3D::Node* cam;
     Weapon* weapon;
     
-    ResourceCache* cache;
-    Input* input;
+    Urho3D::ResourceCache* cache;
+    Urho3D::Input* input;
 
-    Vector3 vel;
+    Urho3D::Vector3 vel;
     float yaw;
     float pitch;
 

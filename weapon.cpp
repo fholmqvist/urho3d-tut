@@ -1,5 +1,8 @@
 #include "weapon.h"
 
+using namespace std;
+using namespace Urho3D;
+
 Weapon::Weapon(ResourceCache* _cache, WeaponType _t, Node* _node)
 {
     Node_ = _node;

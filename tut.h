@@ -23,28 +23,26 @@
 
 #include "player.h"
 
-using namespace Urho3D;
-
-class TutorialApp : public Application
+class TutorialApp : public Urho3D::Application
 {
     URHO3D_OBJECT(TutorialApp, Application)
-    Input* input_;
-    SharedPtr<Scene> scene_;
+    Urho3D::Input* input_;
+    Urho3D::SharedPtr<Urho3D::Scene> scene_;
     Player* player_;
 
     float timestep_;
 
 public:
-    TutorialApp(Context* context);
+    TutorialApp(Urho3D::Context* context);
 
     virtual void Setup();
     virtual void Start();
     virtual void Stop();
 
-    void HandleUpdate(StringHash eventType, VariantMap& eventData);
+    void HandleUpdate(Urho3D::StringHash eventType, Urho3D::VariantMap& eventData);
 
 private:
     void initScene();
-    Node* initCamera();
-    void initViewport(Node* camNode);
+    Urho3D::Node* initCamera();
+    void initViewport(Urho3D::Node* cam);
 };

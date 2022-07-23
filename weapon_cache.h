@@ -11,14 +11,12 @@
 
 #include "weapon_types.h"
 
-using namespace Urho3D;
-
 class WeaponCache
 {
 public:
     explicit WeaponCache();
     static WeaponData GetData(WeaponType t);
-    static void LoadModel(ResourceCache* cache, StaticModel* weaponModel, WeaponType t);
+    static void LoadModel(Urho3D::ResourceCache* cache, Urho3D::StaticModel* weaponModel, WeaponType t);
     static int TakeAmmo(WeaponType t, int amount);
     static void ReturnAmmo(WeaponType t, int amount);
 };

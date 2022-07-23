@@ -2,8 +2,6 @@
 
 #include <Urho3D/Container/Str.h>
 
-using namespace Urho3D;
-
 enum class WeaponType
 {
     None,
@@ -15,7 +13,7 @@ enum class WeaponType
 // this struct handles the data.
 struct WeaponData
 {
-    String name;
+    Urho3D::String name;
     unsigned short clipSize;
     unsigned short damage;
     unsigned int fireRate; // milliseconds

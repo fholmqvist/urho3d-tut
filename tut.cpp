@@ -81,9 +81,9 @@ Node* TutorialApp::initCamera()
     return camNode;
 }
 
-void TutorialApp::initViewport(Node* camNode)
+void TutorialApp::initViewport(Node* cam)
 {
-    SharedPtr<Viewport> viewport(new Viewport(context_, scene_, camNode->GetComponent<Camera>()));
+    SharedPtr<Viewport> viewport(new Viewport(context_, scene_, cam->GetComponent<Camera>()));
     auto* renderer = GetSubsystem<Renderer>();
     renderer->SetViewport(0, viewport);
 }

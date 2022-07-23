@@ -1,5 +1,7 @@
 #include "player.h"
 
+using namespace Urho3D;
+
 Player::Player(Scene* scene_, ResourceCache* _cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");

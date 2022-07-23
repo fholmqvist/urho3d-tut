@@ -1,5 +1,7 @@
 #include "weapon_cache.h"
 
+using namespace Urho3D;
+
 std::vector<WeaponData> __weapons = {
     {.name = "None"},
     {.name = "Revolver",
