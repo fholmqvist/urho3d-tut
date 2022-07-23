@@ -28,7 +28,7 @@ private:
     Urho3D::Node* body;
     Urho3D::Node* cam;
     Weapon* weapon;
-    
+
     Urho3D::ResourceCache* cache;
     Urho3D::Input* input;
 
@@ -38,5 +38,6 @@ private:
 
     void rotate();
     void move(float timestep);
+    Urho3D::Vector3 getMoveInputs();
     void handleWeapon();
 };

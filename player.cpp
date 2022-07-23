@@ -46,15 +46,7 @@ void Player::rotate()
 
 void Player::move(float timestep)
 {
-    Vector3 move;
-    if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
-        move += Vector3::FORWARD;
-    else if (input->GetKeyDown(KEY_S) || input->GetKeyDown(KEY_DOWN) || input->GetKeyDown(KEY_K))
-        move += -Vector3::FORWARD;
-    if (input->GetKeyDown(KEY_A) || input->GetKeyDown(KEY_LEFT) || input->GetKeyDown(KEY_J))
-        move += -Vector3::RIGHT;
-    else if (input->GetKeyDown(KEY_D) || input->GetKeyDown(KEY_RIGHT) || input->GetKeyDown(KEY_L))
-        move += Vector3::RIGHT;
+    Vector3 move = getMoveInputs();
 
     move.Normalize();
     vel += move * MOVE_FORCE * timestep;
@@ -65,6 +57,20 @@ void Player::move(float timestep)
     cam->SetPosition(Vector3(rbPos.x_, HEIGHT, rbPos.z_));
 
     vel *= 0.95f;
+}
+
+Vector3 Player::getMoveInputs()
+{
+    Vector3 move;
+    if (input->GetKeyDown(KEY_W) || input->GetKeyDown(KEY_UP) || input->GetKeyDown(KEY_I))
+        move += Vector3::FORWARD;
+    else if (input->GetKeyDown(KEY_S) || input->GetKeyDown(KEY_DOWN) || input->GetKeyDown(KEY_K))
+        move += -Vector3::FORWARD;
+    if (input->GetKeyDown(KEY_A) || input->GetKeyDown(KEY_LEFT) || input->GetKeyDown(KEY_J))
+        move += -Vector3::RIGHT;
+    else if (input->GetKeyDown(KEY_D) || input->GetKeyDown(KEY_RIGHT) || input->GetKeyDown(KEY_L))
+        move += Vector3::RIGHT;
+    return move;
 }
 
 void Player::handleWeapon()
