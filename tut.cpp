@@ -13,10 +13,10 @@ void TutorialApp::Setup() {}
 void TutorialApp::Start()
 {
     input_ = GetSubsystem<Input>();
-
-    initScene();
-    auto* cam = initCamera();
     auto* cache = GetSubsystem<ResourceCache>();
+
+    initScene(cache);
+    auto* cam = initCamera();
     player_ = new Player(scene_, cache, cam);
     initViewport(cam);
 
@@ -37,12 +37,11 @@ void TutorialApp::HandleUpdate(StringHash eventType, VariantMap& eventData)
     player_->Update(timestep_);
 }
 
-void TutorialApp::initScene()
+void TutorialApp::initScene(ResourceCache* cache)
 {
     scene_ = new Scene(context_);
     scene_->CreateComponent<Octree>();
     scene_->CreateComponent<PhysicsWorld>();
-    auto* cache = GetSubsystem<ResourceCache>();
 
     DemoLevel level;
     level.Load(scene_, cache);

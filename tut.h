@@ -39,7 +39,7 @@ public:
     void HandleUpdate(Urho3D::StringHash eventType, Urho3D::VariantMap& eventData);
 
 private:
-    void initScene();
+    void initScene(Urho3D::ResourceCache* cache);
     Urho3D::Node* initCamera();
     void initViewport(Urho3D::Node* cam);
 };

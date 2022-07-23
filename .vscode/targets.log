@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 23 14:54:05 2022
+# Make data base, printed on Sat Jul 23 15:36:31 2022
 
 # Variables
 
@@ -87,7 +85,7 @@ XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/holmqvist
 # environment
 XDG_SESSION_DESKTOP = dwm
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-vim76pvRP3KD/agent.877
+SSH_AUTH_SOCK = /tmp/ssh-D3bvQXVwMzRK/agent.880
 # automatic
 %F = $(notdir $%)
 # environment
@@ -103,7 +101,7 @@ QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 963
+SSH_AGENT_PID = 958
 # environment
 PKG_CONFIG_PATH = /home/holmqvist/.opam/default/lib/pkgconfig:
 # environment
@@ -213,7 +211,7 @@ LC_ADDRESS = sv_SE.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 8591
+VSCODE_PID = 1466
 # variable set hash-table stats:
 # Load=101/1024=10%, Rehash=0, Collisions=11/126=9%
 
@@ -277,6 +275,8 @@ run:
 # strcache performance: lookups = 30 / hit rate = 16%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/30=3%
-# Finished Make data base on Sat Jul 23 14:54:05 2022
+# Finished Make data base on Sat Jul 23 15:36:31 2022
 
  
+make: *** No rule to make target 'all'.  Stop.
+
