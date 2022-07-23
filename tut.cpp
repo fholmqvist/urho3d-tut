@@ -44,30 +44,8 @@ void TutorialApp::initScene()
     scene_->CreateComponent<PhysicsWorld>();
     auto* cache = GetSubsystem<ResourceCache>();
 
-    Node* floorNode = scene_->CreateChild("Floor");
-    floorNode->SetPosition(Vector3(0, -1.0f, 0));
-    floorNode->SetScale(Vector3(200, 1.0f, 200));
-    auto* object = floorNode->CreateComponent<StaticModel>();
-    object->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
-    object->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
-    auto* floorBody = floorNode->CreateComponent<RigidBody>();
-    auto* floorShape = floorNode->CreateComponent<CollisionShape>();
-    floorShape->SetBox(Vector3::ONE);
-
-    auto* boxNode = scene_->CreateChild("Model Node");
-    boxNode->SetPosition(Vector3(0, 1.0f, 0));
-    boxNode->SetScale(2.5f);
-    auto* boxObject = boxNode->CreateComponent<StaticModel>();
-    boxObject->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
-    boxObject->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
-    auto* body = boxNode->CreateComponent<RigidBody>();
-    auto* shape = boxNode->CreateComponent<CollisionShape>();
-    shape->SetBox(Vector3::ONE);
-
-    auto* lightNode = scene_->CreateChild("Light Node");
-    auto* light = lightNode->CreateComponent<Light>();
-    light->SetLightType(LIGHT_DIRECTIONAL);
-    lightNode->SetDirection(Vector3(0.6f, -1.0f, 0.8f));
+    DemoLevel level;
+    level.Load(scene_, cache);
 }
 
 Node* TutorialApp::initCamera()

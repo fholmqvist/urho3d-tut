@@ -22,6 +22,7 @@
 #include <memory>
 
 #include "player.h"
+#include "level.h"
 
 class TutorialApp : public Urho3D::Application
 {
@@ -29,6 +30,7 @@ class TutorialApp : public Urho3D::Application
     Urho3D::Input* input_;
     Urho3D::SharedPtr<Urho3D::Scene> scene_;
     Player* player_;
+    Level* current_level;
 
     float timestep_;
 
