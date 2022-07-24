@@ -12,19 +12,13 @@
 
 #include <vector>
 
-enum class Levels
+enum class Level
 {
     Demo
 };
 
-class Level
+class Levels
 {
 public:
-    virtual void Load(Urho3D::Scene* scene, Urho3D::ResourceCache* cache){};
-};
-
-class DemoLevel : public Level
-{
-public:
-    void Load(Urho3D::Scene* scene, Urho3D::ResourceCache* cache);
+    static void Load(Urho3D::Scene* s, Urho3D::ResourceCache* c, Level l);
 };

@@ -43,8 +43,7 @@ void TutorialApp::initScene(ResourceCache* cache)
     scene_->CreateComponent<Octree>();
     scene_->CreateComponent<PhysicsWorld>();
 
-    DemoLevel level;
-    level.Load(scene_, cache);
+    Levels::Load(scene_, cache, Level::Demo);
 }
 
 Node* TutorialApp::initCamera()

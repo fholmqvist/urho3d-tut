@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Jul 23 15:36:31 2022
+# Make data base, printed on Sun Jul 24 10:37:37 2022
 
 # Variables
 
@@ -85,7 +85,7 @@ XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/holmqvist
 # environment
 XDG_SESSION_DESKTOP = dwm
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-D3bvQXVwMzRK/agent.880
+SSH_AUTH_SOCK = /tmp/ssh-zf2rBagPiEQU/agent.861
 # automatic
 %F = $(notdir $%)
 # environment
@@ -101,7 +101,7 @@ QT_QPA_PLATFORMTHEME = qt5ct
 # environment
 XDG_SEAT = seat0
 # environment
-SSH_AGENT_PID = 958
+SSH_AGENT_PID = 940
 # environment
 PKG_CONFIG_PATH = /home/holmqvist/.opam/default/lib/pkgconfig:
 # environment
@@ -211,7 +211,7 @@ LC_ADDRESS = sv_SE.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 1466
+VSCODE_PID = 13064
 # variable set hash-table stats:
 # Load=101/1024=10%, Rehash=0, Collisions=11/126=9%
 
@@ -275,7 +275,7 @@ run:
 # strcache performance: lookups = 30 / hit rate = 16%
 # hash-table stats:
 # Load=25/8192=0%, Rehash=0, Collisions=1/30=3%
-# Finished Make data base on Sat Jul 23 15:36:31 2022
+# Finished Make data base on Sun Jul 24 10:37:37 2022
 
  
 make: *** No rule to make target 'all'.  Stop.
