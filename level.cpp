@@ -5,7 +5,7 @@ using namespace Urho3D;
 std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
     [](Scene* scene, ResourceCache* cache)
     {
-        Node* floorNode = scene->CreateChild("Floor");
+        Node* floorNode = scene->CreateChild("Demo -- Floor");
         floorNode->SetPosition(Vector3(0, -1.0f, 0));
         floorNode->SetScale(Vector3(200, 1.0f, 200));
         auto* object = floorNode->CreateComponent<StaticModel>();
@@ -15,7 +15,7 @@ std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
         auto* floorShape = floorNode->CreateComponent<CollisionShape>();
         floorShape->SetBox(Vector3::ONE);
 
-        auto* boxNode = scene->CreateChild("Model Node");
+        auto* boxNode = scene->CreateChild("Demo -- Box");
         boxNode->SetPosition(Vector3(0, 1.0f, 0));
         boxNode->SetScale(2.5f);
         auto* boxObject = boxNode->CreateComponent<StaticModel>();
@@ -25,7 +25,7 @@ std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
         auto* shape = boxNode->CreateComponent<CollisionShape>();
         shape->SetBox(Vector3::ONE);
 
-        auto* lightNode = scene->CreateChild("Light Node");
+        auto* lightNode = scene->CreateChild("Demo -- Light");
         auto* light = lightNode->CreateComponent<Light>();
         light->SetLightType(LIGHT_DIRECTIONAL);
         lightNode->SetDirection(Vector3(0.6f, -1.0f, 0.8f));
