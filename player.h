@@ -11,7 +11,7 @@
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Scene/Scene.h>
 
-#include "level.h"
+#include "globals.h"
 #include "weapon.h"
 #include "weapon_cache.h"
 
@@ -19,6 +19,7 @@ class Player
 {
 public:
     Player(Urho3D::Scene* scene_, Urho3D::ResourceCache* _cache, Urho3D::Node* _camNode);
+    void SetPositionToCam(Urho3D::Node* cam);
     void Update(float timestep);
 
     static constexpr auto HEIGHT = 1.8f;

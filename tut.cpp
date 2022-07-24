@@ -17,9 +17,9 @@ void TutorialApp::Start()
 
     initScene(cache);
     auto* cam = initCamera();
-    Levels::Load(scene_, cache, Level::Demo);
     player_ = new Player(scene_, cache, cam);
     initViewport(cam);
+    Levels::Load(scene_, cache, player_, Level::Demo);
 
     SubscribeToEvent(E_UPDATE, URHO3D_HANDLER(TutorialApp, HandleUpdate));
 }

@@ -6,11 +6,10 @@ Player::Player(Scene* scene_, ResourceCache* _cache, Node* _camNode)
 {
     Node* playerBody = scene_->CreateChild("PlayerBody");
     auto* rb = playerBody->CreateComponent<RigidBody>();
-    Levels::FixAABBIssue(rb);
+    Globals::FixAABBIssue(rb);
     rb->SetMass(80.0f);
     rb->SetAngularFactor(Vector3::ZERO);
     rb->SetCollisionEventMode(COLLISION_ALWAYS);
-    rb->SetPosition(_camNode->GetPosition());
     auto* shape = playerBody->CreateComponent<CollisionShape>();
     shape->SetCapsule(2.0f, HEIGHT, Vector3(0, HEIGHT / 2.0f, 0));
 
@@ -24,6 +23,12 @@ Player::Player(Scene* scene_, ResourceCache* _cache, Node* _camNode)
 
     cache = _cache;
     input = scene_->GetSubsystem<Input>();
+}
+
+void Player::SetPositionToCam(Node* cam)
+{
+    auto rb = body->GetComponent<RigidBody>();
+    rb->SetPosition(cam->GetPosition());
 }
 
 void Player::Update(float timestep)
