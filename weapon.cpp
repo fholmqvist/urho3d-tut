@@ -23,7 +23,7 @@ void Weapon::Change(ResourceCache* _cache, WeaponType t)
     data = WeaponCache::GetData(t);
     fireTime = Time::GetSystemTime();
     Pitch = 0;
-    Recoil = 0;
+    Recoil.z_ = 0;
     reload();
 }
 
@@ -40,6 +40,7 @@ void Weapon::Update()
         else
         {
             Pitch -= 1;
+            Recoil.y_ += 0.005f;
         }
     }
 }
@@ -63,7 +64,7 @@ void Weapon::TriggerDown()
     {
         return;
     }
-    Recoil += data.recoilBack / 10;
+    Recoil.z_ += data.recoilBack / 10;
     Pitch += data.recoilRot * 10;
     ammo--;
     state = WeaponState::TriggerDown;
@@ -104,13 +105,21 @@ void Weapon::handleRecoil()
     {
         Pitch *= 0.94f;
     }
-    if (std::abs(Recoil) < 0.001)
+    if (std::abs(Recoil.y_) < 0.001)
     {
-        Recoil = 0;
+        Recoil.y_ = 0;
     }
-    if (std::abs(Recoil) > 0)
+    if (std::abs(Recoil.y_) > 0)
     {
-        Recoil *= 0.94f;
+        Recoil.y_ *= 0.94f;
+    }
+    if (std::abs(Recoil.z_) < 0.001)
+    {
+        Recoil.z_ = 0;
+    }
+    if (std::abs(Recoil.z_) > 0)
+    {
+        Recoil.z_ *= 0.94f;
     }
 }
 

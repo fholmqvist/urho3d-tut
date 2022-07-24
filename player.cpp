@@ -123,9 +123,10 @@ void Player::handleWeapon()
 {
     auto newPos = cam->GetPosition();
     newPos += cam->GetDirection() * 0.8f;
-    newPos -= cam->GetDirection() * weapon->Recoil;
+    newPos -= cam->GetDirection() * weapon->Recoil.z_;
     newPos += cam->GetRight() * 0.2f;
     newPos -= cam->GetUp() * 0.2f;
+    newPos -= cam->GetUp() * weapon->Recoil.y_;
     weapon->Node_->SetPosition(newPos);
     auto rot = cam->GetRotation().EulerAngles();
     rot += Vector3(-weapon->Pitch + 180, 0, 180);

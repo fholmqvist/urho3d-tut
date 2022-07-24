@@ -17,7 +17,7 @@ class Weapon
 public:
     Urho3D::Node* Node_;
     float Pitch;
-    float Recoil;
+    Urho3D::Vector3 Recoil;
 
     explicit Weapon(Urho3D::ResourceCache* _cache, WeaponType _t, Urho3D::Node* _node);
 
