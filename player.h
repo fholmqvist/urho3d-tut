@@ -39,8 +39,10 @@ private:
     float yaw;
     float pitch;
 
+    // Used for lerping in jumpForce.
     unsigned int jumpTime;
-    float jumpingPower;
+    // Peak jump force.
+    float jumpForce;
 
     void rotate();
     void move(float timestep);

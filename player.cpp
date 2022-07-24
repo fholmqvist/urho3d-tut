@@ -68,32 +68,41 @@ void Player::move(float timestep)
 
 void Player::handleJumping(Octree* oc)
 {
+    const unsigned int NOT_JUMPING = 0;
+    const unsigned int PEAK_JUMP = 10;
+    const float MIN_FLOOR_PROXIMITY = 0.1f;
+    const float PEAK_FORCE = 5;
+
+    // Check if we're standing on something.
     Vector<RayQueryResult> results;
     Ray r = Ray(body->GetPosition(), -Vector3::UP);
-    RayOctreeQuery query(results, r, RAY_TRIANGLE, 1.0f, DRAWABLE_GEOMETRY);
+    RayOctreeQuery query(results, r, RAY_TRIANGLE, MIN_FLOOR_PROXIMITY, DRAWABLE_GEOMETRY);
     oc->RaycastSingle(query);
-    if (results.Size() && jumpTime == 10)
+    if (results.Size() && jumpTime == PEAK_JUMP)
     {
-        jumpTime = 0;
+        jumpTime = NOT_JUMPING;
     }
 
-    if (input->GetKeyPress(KEY_SPACE) && jumpTime == 0)
+    // Start jump.
+    if (jumpTime == NOT_JUMPING && input->GetKeyPress(KEY_SPACE))
     {
         jumpTime = 1;
     }
 
-    if (jumpTime > 0 && jumpTime != 10)
+    // Lerp to avoid jerky jump.
+    if (jumpTime > NOT_JUMPING && jumpTime != PEAK_JUMP)
     {
         jumpTime++;
-        jumpingPower = Globals::Lerp(jumpingPower, 5, jumpTime / 10);
+        jumpForce = Globals::Lerp(jumpForce, PEAK_FORCE, jumpTime / 10);
     }
 
-    if (jumpingPower > 0 && jumpTime != 10)
+    // Apply force whilst lerping.
+    if (jumpForce > NOT_JUMPING && jumpTime != PEAK_JUMP)
     {
-        vel += Vector3::UP * jumpingPower;
+        vel += Vector3::UP * jumpForce;
     }
 
-    jumpingPower *= 0.95f;
+    jumpForce *= 0.95f;
 }
 
 Vector3 Player::getMoveInputs()
