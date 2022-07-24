@@ -46,7 +46,7 @@ void TutorialApp::initScene(ResourceCache* cache)
 
     Node* zoneNode = scene_->CreateChild("Zone");
     auto* zone = zoneNode->CreateComponent<Zone>();
-    zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
+    zone->SetBoundingBox(BoundingBox(-500.0f, 500.0f));
     zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
     zone->SetFogStart(25.0f);
     zone->SetFogEnd(250.0f);
