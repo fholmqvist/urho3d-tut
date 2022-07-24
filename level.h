@@ -1,5 +1,6 @@
 #pragma once
 
+#include <Urho3D/Graphics/Camera.h>
 #include <Urho3D/Graphics/Light.h>
 #include <Urho3D/Graphics/Material.h>
 #include <Urho3D/Graphics/Model.h>
@@ -11,6 +12,8 @@
 #include <Urho3D/Scene/Scene.h>
 
 #include <vector>
+
+#include "player.h"
 
 enum class Level
 {

@@ -17,6 +17,7 @@ void TutorialApp::Start()
 
     initScene(cache);
     auto* cam = initCamera();
+    Levels::Load(scene_, cache, Level::Demo);
     player_ = new Player(scene_, cache, cam);
     initViewport(cam);
 
@@ -50,17 +51,14 @@ void TutorialApp::initScene(ResourceCache* cache)
     zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
     zone->SetFogStart(25.0f);
     zone->SetFogEnd(250.0f);
-
-    Levels::Load(scene_, cache, Level::Demo);
 }
 
 Node* TutorialApp::initCamera()
 {
     auto camNode = scene_->CreateChild("Camera");
     auto* cam = camNode->CreateComponent<Camera>();
-    cam->SetFarClip(100);
+    cam->SetFarClip(250);
     cam->SetFov(45.0f);
-    camNode->Translate(Vector3(0, Player::HEIGHT / 2.0f, -5));
     return camNode;
 }
 

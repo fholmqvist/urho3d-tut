@@ -5,6 +5,9 @@ using namespace Urho3D;
 std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
     [](Scene* scene, ResourceCache* cache)
     {
+        auto* camNode = scene->GetChild("Camera", true);
+        camNode->Translate(Vector3(0, Player::HEIGHT / 2.0f, -5));
+
         Node* floorNode = scene->CreateChild("Demo -- Floor");
         floorNode->SetPosition(Vector3(0, -1.0f, 0));
         floorNode->SetScale(Vector3(200, 1.0f, 200));

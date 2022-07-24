@@ -11,6 +11,7 @@
 #include <Urho3D/Resource/ResourceCache.h>
 #include <Urho3D/Scene/Scene.h>
 
+#include "level.h"
 #include "weapon.h"
 #include "weapon_cache.h"
 
