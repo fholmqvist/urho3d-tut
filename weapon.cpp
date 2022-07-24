@@ -37,12 +37,16 @@ void Weapon::Update()
             reload();
             return;
         }
+        else
+        {
+            Pitch -= 1;
+        }
     }
 }
 
 void Weapon::TriggerDown()
 {
-    if (state == WeaponState::OutOfAmmo)
+    if (state == WeaponState::OutOfAmmo || state == WeaponState::Reloading)
     {
         return;
     }
@@ -92,19 +96,19 @@ void Weapon::StartReload()
 
 void Weapon::handleRecoil()
 {
-    if (Pitch < 0.001)
+    if (std::abs(Pitch) < 0.001)
     {
         Pitch = 0;
     }
-    if (Pitch > 0)
+    if (std::abs(Pitch) > 0)
     {
         Pitch *= 0.94f;
     }
-    if (Recoil < 0.001)
+    if (std::abs(Recoil) < 0.001)
     {
         Recoil = 0;
     }
-    if (Recoil > 0)
+    if (std::abs(Recoil) > 0)
     {
         Recoil *= 0.94f;
     }
@@ -120,7 +124,7 @@ void Weapon::reload()
         printf("out of ammo!\n");
         return;
     }
-    ammo = newAmmo;
+    ammo += newAmmo;
     state = WeaponState::Normal;
     printf("reloaded!\n");
 }
