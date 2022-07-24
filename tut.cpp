@@ -49,8 +49,7 @@ void TutorialApp::initScene(ResourceCache* cache)
 Node* TutorialApp::initCamera()
 {
     auto camNode = scene_->CreateChild("Camera");
-    auto* camera = camNode->CreateComponent<Camera>();
-    auto cam = camNode->GetComponent<Camera>();
+    auto* cam = camNode->CreateComponent<Camera>();
     cam->SetFarClip(100);
     cam->SetFov(45.0f);
     camNode->Translate(Vector3(0, Player::HEIGHT, -5));
