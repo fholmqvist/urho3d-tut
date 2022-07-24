@@ -39,6 +39,8 @@ private:
     float yaw;
     float pitch;
 
+    float weaponRot;
+
     // Used for lerping in jumpForce.
     unsigned int jumpTime;
     // Peak jump force.

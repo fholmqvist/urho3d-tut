@@ -101,7 +101,7 @@ void Weapon::handleRecoil()
     {
         Pitch = 0;
     }
-    if (std::abs(Pitch) > 0)
+    else
     {
         Pitch *= 0.94f;
     }
@@ -109,7 +109,7 @@ void Weapon::handleRecoil()
     {
         Recoil.y_ = 0;
     }
-    if (std::abs(Recoil.y_) > 0)
+    else
     {
         Recoil.y_ *= 0.94f;
     }
@@ -117,7 +117,7 @@ void Weapon::handleRecoil()
     {
         Recoil.z_ = 0;
     }
-    if (std::abs(Recoil.z_) > 0)
+    else
     {
         Recoil.z_ *= 0.94f;
     }

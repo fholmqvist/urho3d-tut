@@ -125,9 +125,21 @@ void Player::handleWeapon()
     newPos -= cam->GetUp() * 0.2f;
     newPos -= cam->GetUp() * weapon->Recoil.y_;
     weapon->Node_->SetPosition(newPos);
+
     auto rot = cam->GetRotation().EulerAngles();
-    rot += Vector3(-weapon->Pitch + 180, 0, 180);
+    auto mRot = input->GetMouseMove();
+    weaponRot += mRot.x_ * MOUSE_SENS;
+    rot += Vector3(-weapon->Pitch + 180, -weaponRot, 180 - weaponRot);
     weapon->Node_->SetRotation(Quaternion(rot));
+
+    if (std::abs(weaponRot) < 0.0001)
+    {
+        weaponRot = 0;
+    }
+    else
+    {
+        weaponRot *= 0.86f;
+    }
 
     if (input->GetKeyDown(KEY_1))
     {
