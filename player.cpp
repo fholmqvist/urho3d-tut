@@ -31,11 +31,11 @@ void Player::SetPositionToCam(Node* cam)
     rb->SetPosition(cam->GetPosition());
 }
 
-void Player::Update(float timestep)
+void Player::Update(Octree* oc, float timestep)
 {
     rotate();
     move(timestep);
-    handleJumping();
+    handleJumping(oc);
     weapon->Update();
     handleWeapon();
 }
@@ -66,13 +66,21 @@ void Player::move(float timestep)
     vel *= 0.95f;
 }
 
-void Player::handleJumping()
+void Player::handleJumping(Octree* oc)
 {
-    // TODO:
-    // * Smooth
-    // * Collision check ground
-    if (input->GetKeyPress(KEY_SPACE))
+    Vector<RayQueryResult> results;
+    Ray r = Ray(body->GetPosition(), -Vector3::UP);
+    RayOctreeQuery query(results, r, RAY_TRIANGLE, 1.0f, DRAWABLE_GEOMETRY);
+    oc->RaycastSingle(query);
+    if (results.Size() && jumpTime == 10)
+    {
+        jumpTime = 0;
+    }
+
+    if (input->GetKeyPress(KEY_SPACE) && jumpTime == 0)
+    {
         jumpTime = 1;
+    }
 
     if (jumpTime > 0 && jumpTime != 10)
     {
@@ -84,9 +92,6 @@ void Player::handleJumping()
     {
         vel += Vector3::UP * jumpingPower;
     }
-
-    if (jumpTime == 10)
-        jumpTime = 0;
 
     jumpingPower *= 0.95f;
 }

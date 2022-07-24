@@ -35,7 +35,7 @@ void TutorialApp::HandleUpdate(StringHash eventType, VariantMap& eventData)
 
     timestep_ = eventData[P_TIMESTEP].GetFloat();
 
-    player_->Update(timestep_);
+    player_->Update(scene_->GetComponent<Octree>(), timestep_);
 }
 
 void TutorialApp::initScene(ResourceCache* cache)
