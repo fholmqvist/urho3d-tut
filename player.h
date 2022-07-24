@@ -39,6 +39,7 @@ private:
     float yaw;
     float pitch;
 
+    Urho3D::Vector3 weaponVel;
     float weaponRot;
 
     // Used for lerping in jumpForce.

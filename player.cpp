@@ -53,6 +53,7 @@ void Player::move(float timestep)
 
     move.Normalize();
     vel += move * MOVE_FORCE * timestep;
+    weaponVel += vel * 0.00005f;
 
     auto* rb = body->GetComponent<RigidBody>();
     rb->SetLinearVelocity(body->GetRotation() * vel);
@@ -60,6 +61,7 @@ void Player::move(float timestep)
     cam->SetPosition(Vector3(rbPos.x_, rbPos.y_ + HEIGHT, rbPos.z_));
 
     vel *= 0.95f;
+    weaponVel *= 0.95f;
 }
 
 void Player::handleJumping(Octree* oc)
@@ -117,8 +119,7 @@ Vector3 Player::getMoveInputs()
 
 void Player::handleWeapon()
 {
-    const float AIM_DISPLACEMENT = 1000;
-    auto newPos = cam->GetPosition() - (vel / AIM_DISPLACEMENT);
+    auto newPos = cam->GetPosition() - weaponVel;
     newPos += cam->GetDirection() * 0.8f;
     newPos -= cam->GetDirection() * weapon->Recoil.z_;
     newPos += cam->GetRight() * 0.2f;
