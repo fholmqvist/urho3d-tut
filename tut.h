@@ -15,7 +15,6 @@
 #include <Urho3D/UI/UI.h>
 
 #include <iostream>
-#include <memory>
 
 #include "level.h"
 #include "player.h"

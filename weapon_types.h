@@ -16,8 +16,8 @@ struct WeaponData
     Urho3D::String name;
     unsigned short clipSize;
     unsigned short damage;
-    unsigned int fireRate; // milliseconds
-    unsigned int reloadTime;      // milliseconds
+    unsigned int fireRate;   // milliseconds
+    unsigned int reloadTime; // milliseconds
     float recoilBack;
     float recoilRot;
     bool constantFire;
