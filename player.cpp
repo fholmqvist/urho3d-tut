@@ -25,11 +25,7 @@ Player::Player(Scene* scene_, ResourceCache* _cache, Node* _camNode)
     input = scene_->GetSubsystem<Input>();
 }
 
-void Player::SetPositionToCam(Node* cam)
-{
-    auto rb = body->GetComponent<RigidBody>();
-    rb->SetPosition(cam->GetPosition());
-}
+void Player::SetPositionToCam(Node* cam) { body->GetComponent<RigidBody>()->SetPosition(cam->GetPosition()); }
 
 void Player::Update(Octree* oc, float timestep)
 {
@@ -121,7 +117,8 @@ Vector3 Player::getMoveInputs()
 
 void Player::handleWeapon()
 {
-    auto newPos = cam->GetPosition();
+    const float AIM_DISPLACEMENT = 1000;
+    auto newPos = cam->GetPosition() - (vel / AIM_DISPLACEMENT);
     newPos += cam->GetDirection() * 0.8f;
     newPos -= cam->GetDirection() * weapon->Recoil.z_;
     newPos += cam->GetRight() * 0.2f;
