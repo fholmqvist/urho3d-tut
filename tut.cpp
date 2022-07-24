@@ -41,7 +41,8 @@ void TutorialApp::initScene(ResourceCache* cache)
 {
     scene_ = new Scene(context_);
     scene_->CreateComponent<Octree>();
-    scene_->CreateComponent<PhysicsWorld>();
+    auto* physics = scene_->CreateComponent<PhysicsWorld>();
+    physics->SetGravity(physics->GetGravity() * 80.0f);
 
     Levels::Load(scene_, cache, Level::Demo);
 }
@@ -52,7 +53,7 @@ Node* TutorialApp::initCamera()
     auto* cam = camNode->CreateComponent<Camera>();
     cam->SetFarClip(100);
     cam->SetFov(45.0f);
-    camNode->Translate(Vector3(0, Player::HEIGHT, -5));
+    camNode->Translate(Vector3(0, Player::HEIGHT/2.0f, -5));
     return camNode;
 }
 

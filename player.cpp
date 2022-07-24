@@ -51,10 +51,16 @@ void Player::move(float timestep)
     move.Normalize();
     vel += move * MOVE_FORCE * timestep;
 
+    // TODO: Fix jumping.
+    // * Smooth
+    // * Collision check ground
+    if (input->GetKeyPress(KEY_SPACE))
+        vel += Vector3::UP * 80.0f;
+
     auto* rb = body->GetComponent<RigidBody>();
     rb->SetLinearVelocity(body->GetRotation() * vel);
     auto rbPos = rb->GetPosition();
-    cam->SetPosition(Vector3(rbPos.x_, HEIGHT, rbPos.z_));
+    cam->SetPosition(Vector3(rbPos.x_, rbPos.y_ + HEIGHT, rbPos.z_));
 
     vel *= 0.95f;
 }
