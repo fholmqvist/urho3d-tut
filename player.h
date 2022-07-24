@@ -36,8 +36,12 @@ private:
     float yaw;
     float pitch;
 
+    int jumpN;
+    float jumpingPower;
+
     void rotate();
     void move(float timestep);
+    void handleJumping();
     Urho3D::Vector3 getMoveInputs();
     void handleWeapon();
 };

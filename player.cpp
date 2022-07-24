@@ -29,6 +29,7 @@ void Player::Update(float timestep)
 {
     rotate();
     move(timestep);
+    handleJumping();
     weapon->Update();
     handleWeapon();
 }
@@ -51,18 +52,33 @@ void Player::move(float timestep)
     move.Normalize();
     vel += move * MOVE_FORCE * timestep;
 
-    // TODO: Fix jumping.
-    // * Smooth
-    // * Collision check ground
-    if (input->GetKeyPress(KEY_SPACE))
-        vel += Vector3::UP * 80.0f;
-
     auto* rb = body->GetComponent<RigidBody>();
     rb->SetLinearVelocity(body->GetRotation() * vel);
     auto rbPos = rb->GetPosition();
     cam->SetPosition(Vector3(rbPos.x_, rbPos.y_ + HEIGHT, rbPos.z_));
 
     vel *= 0.95f;
+}
+
+void Player::handleJumping()
+{
+    // TODO:
+    // * Smooth
+    // * Collision check ground
+    if (input->GetKeyPress(KEY_SPACE))
+        jumpN = 6;
+
+    if (jumpN != 0)
+    {
+        jumpN--;
+        jumpingPower += 1.0f;
+    }
+
+    if (jumpingPower > 0.0f && jumpN == 0)
+    {
+        vel += Vector3::UP * jumpingPower;
+        jumpingPower -= 0.25f;
+    }
 }
 
 Vector3 Player::getMoveInputs()
