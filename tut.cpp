@@ -44,6 +44,13 @@ void TutorialApp::initScene(ResourceCache* cache)
     auto* physics = scene_->CreateComponent<PhysicsWorld>();
     physics->SetGravity(physics->GetGravity() * 80.0f);
 
+    Node* zoneNode = scene_->CreateChild("Zone");
+    auto* zone = zoneNode->CreateComponent<Zone>();
+    zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
+    zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
+    zone->SetFogStart(25.0f);
+    zone->SetFogEnd(250.0f);
+
     Levels::Load(scene_, cache, Level::Demo);
 }
 
@@ -53,7 +60,7 @@ Node* TutorialApp::initCamera()
     auto* cam = camNode->CreateComponent<Camera>();
     cam->SetFarClip(100);
     cam->SetFov(45.0f);
-    camNode->Translate(Vector3(0, Player::HEIGHT/2.0f, -5));
+    camNode->Translate(Vector3(0, Player::HEIGHT / 2.0f, -5));
     return camNode;
 }
 

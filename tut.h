@@ -7,6 +7,7 @@
 #include <Urho3D/Graphics/Octree.h>
 #include <Urho3D/Graphics/Renderer.h>
 #include <Urho3D/Graphics/Viewport.h>
+#include <Urho3D/Graphics/Zone.h>
 #include <Urho3D/Input/InputEvents.h>
 #include <Urho3D/Physics/PhysicsWorld.h>
 #include <Urho3D/Resource/ResourceCache.h>
@@ -16,8 +17,8 @@
 #include <iostream>
 #include <memory>
 
-#include "player.h"
 #include "level.h"
+#include "player.h"
 
 class TutorialApp : public Urho3D::Application
 {
