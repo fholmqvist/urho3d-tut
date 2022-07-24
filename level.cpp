@@ -12,6 +12,7 @@ std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
         object->SetModel(cache->GetResource<Model>("Models/Box.mdl"));
         object->SetMaterial(cache->GetResource<Material>("Materials/Stone.xml"));
         auto* floorBody = floorNode->CreateComponent<RigidBody>();
+        Levels::FixAABBIssue(floorBody);
         auto* floorShape = floorNode->CreateComponent<CollisionShape>();
         floorShape->SetBox(Vector3::ONE);
 
@@ -32,3 +33,11 @@ std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
     }};
 
 void Levels::Load(Scene* s, ResourceCache* c, Level l) { levels[static_cast<int>(l)](s, c); }
+
+// Fix for zero rotation in RigidBody sometimes throwing exception.
+void Levels::FixAABBIssue(Urho3D::RigidBody* rb)
+{
+    auto pos = rb->GetRotation();
+    auto offset = Quaternion(0.001f, 0.001f, 0.001f);
+    rb->SetRotation(pos + offset);
+}

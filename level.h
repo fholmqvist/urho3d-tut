@@ -20,5 +20,6 @@ enum class Level
 class Levels
 {
 public:
+    static void FixAABBIssue(Urho3D::RigidBody* rb);
     static void Load(Urho3D::Scene* s, Urho3D::ResourceCache* c, Level l);
 };
