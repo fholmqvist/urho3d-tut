@@ -1,8 +1,9 @@
 #include "level.h"
 
 using namespace Urho3D;
+using namespace std;
 
-std::vector<std::function<void(Scene*, ResourceCache*, Player*)>> levels = {
+vector<function<void(Scene*, ResourceCache*, Player*)>> levels = {
     [](Scene* scene, ResourceCache* cache, Player* player)
     {
         auto* camNode = scene->GetChild("Camera", true);

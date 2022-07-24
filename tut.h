@@ -23,7 +23,7 @@
 class TutorialApp : public Urho3D::Application
 {
     URHO3D_OBJECT(TutorialApp, Application)
-    Urho3D::Input* input_;
+    Urho3D::SharedPtr<Urho3D::Input> input_;
     Urho3D::SharedPtr<Urho3D::Scene> scene_;
     Player* player_;
 
