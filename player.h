@@ -38,7 +38,7 @@ private:
     float yaw;
     float pitch;
 
-    int jumpN;
+    unsigned int jumpTime;
     float jumpingPower;
 
     void rotate();

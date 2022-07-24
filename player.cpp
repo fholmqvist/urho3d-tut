@@ -72,19 +72,23 @@ void Player::handleJumping()
     // * Smooth
     // * Collision check ground
     if (input->GetKeyPress(KEY_SPACE))
-        jumpN = 6;
+        jumpTime = 1;
 
-    if (jumpN != 0)
+    if (jumpTime > 0 && jumpTime != 10)
     {
-        jumpN--;
-        jumpingPower += 1.0f;
+        jumpTime++;
+        jumpingPower = Globals::Lerp(jumpingPower, 5, jumpTime / 10);
     }
 
-    if (jumpingPower > 0.0f && jumpN == 0)
+    if (jumpingPower > 0 && jumpTime != 10)
     {
         vel += Vector3::UP * jumpingPower;
-        jumpingPower -= 0.25f;
     }
+
+    if (jumpTime == 10)
+        jumpTime = 0;
+
+    jumpingPower *= 0.95f;
 }
 
 Vector3 Player::getMoveInputs()

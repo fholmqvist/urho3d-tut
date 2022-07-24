@@ -9,3 +9,5 @@ void Globals::FixAABBIssue(RigidBody* rb)
     auto offset = Quaternion(0.001f, 0.001f, 0.001f);
     rb->SetRotation(pos + offset);
 }
+
+float Globals::Lerp(float a, float b, float t) { return a + t * (b - a); }
