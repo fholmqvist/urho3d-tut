@@ -16,6 +16,13 @@ std::vector<std::function<void(Scene*, ResourceCache*)>> levels = {
         auto* floorShape = floorNode->CreateComponent<CollisionShape>();
         floorShape->SetBox(Vector3::ONE);
 
+        Node* zoneNode = scene->CreateChild("Zone");
+        auto* zone = zoneNode->CreateComponent<Zone>();
+        zone->SetBoundingBox(BoundingBox(-1000.0f, 1000.0f));
+        zone->SetAmbientColor(Color(0.15f, 0.15f, 0.15f));
+        zone->SetFogStart(25.0f);
+        zone->SetFogEnd(250.0f);
+
         auto* boxNode = scene->CreateChild("Demo -- Box");
         boxNode->SetPosition(Vector3(0, 1.0f, 0));
         boxNode->SetScale(2.5f);
