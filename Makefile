@@ -1,5 +1,5 @@
 run:
 	clear
-	rake
 	# rm -rf ../../../../build
+	rake
 	../../../../build/linux/bin/tut
