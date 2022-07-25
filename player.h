@@ -42,10 +42,7 @@ private:
     Urho3D::Vector3 weaponVel;
     float weaponRot;
 
-    // Used for lerping in jumpForce.
     unsigned int jumpTime;
-    // Peak jump force.
-    float jumpForce;
 
     void rotate();
     void move(float timestep);

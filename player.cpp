@@ -67,7 +67,7 @@ void Player::move(float timestep)
 void Player::handleJumping(Octree* oc)
 {
     const unsigned int NOT_JUMPING = 0;
-    const unsigned int LERP_MAX = 10;
+    const float LERP_MAX = 30;
     const float MIN_FLOOR_PROXIMITY = 0.25f;
     const float PEAK_FORCE = 5;
 
@@ -91,16 +91,9 @@ void Player::handleJumping(Octree* oc)
     if (jumpTime > NOT_JUMPING && jumpTime != LERP_MAX)
     {
         jumpTime++;
-        jumpForce = Globals::Lerp(jumpForce, PEAK_FORCE, jumpTime / LERP_MAX);
-    }
-
-    // Apply force whilst lerping.
-    if (jumpForce > NOT_JUMPING && jumpTime != LERP_MAX)
-    {
+        auto jumpForce = Globals::Lerp(NOT_JUMPING, PEAK_FORCE, jumpTime / LERP_MAX);
         vel += Vector3::UP * jumpForce;
     }
-
-    jumpForce *= 0.95f;
 }
 
 Vector3 Player::getMoveInputs()
